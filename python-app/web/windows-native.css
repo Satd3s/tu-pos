@@ -1,0 +1,1115 @@
+/* =============================================================================
+   WINDOWS 11 FLUENT DESIGN INTEGRATION
+   Estilos para una apariencia nativa de Windows 11
+   ============================================================================= */
+
+/* ===== TYPOGRAPHY - Segoe UI Variable (Windows 11) ===== */
+@font-face {
+    font-family: 'Segoe UI Variable';
+    src: local('Segoe UI Variable');
+}
+
+:root {
+    /* Windows 11 Fluent Colors */
+    --win-mica-base: rgba(32, 32, 32, 0.80);
+    --win-mica-alt: rgba(44, 44, 44, 0.96);
+    --win-acrylic: rgba(28, 28, 28, 0.85);
+
+    /* Windows Accent Colors */
+    --win-accent: #0078D4;
+    --win-accent-light: #60CDFF;
+    --win-accent-dark: #005A9E;
+    --win-accent-soft: rgba(0, 120, 212, 0.15);
+
+    /* Windows Semantic Colors */
+    --win-bg-solid: #202020;
+    --win-bg-layer: #2D2D2D;
+    --win-bg-layer-alt: #333333;
+    --win-stroke: rgba(255, 255, 255, 0.0605);
+    --win-stroke-divider: rgba(255, 255, 255, 0.08);
+    --win-stroke-card: rgba(255, 255, 255, 0.0578);
+    --win-stroke-surface: rgba(255, 255, 255, 0.0698);
+
+    /* Windows Text Colors */
+    --win-text-primary: rgba(255, 255, 255, 1);
+    --win-text-secondary: rgba(255, 255, 255, 0.786);
+    --win-text-tertiary: rgba(255, 255, 255, 0.5442);
+    --win-text-disabled: rgba(255, 255, 255, 0.3628);
+
+    /* Windows Control Colors */
+    --win-control-fill: rgba(255, 255, 255, 0.0605);
+    --win-control-fill-secondary: rgba(255, 255, 255, 0.0837);
+    --win-control-fill-tertiary: rgba(255, 255, 255, 0.0326);
+    --win-control-fill-disabled: rgba(255, 255, 255, 0.0419);
+
+    /* Windows Status Colors */
+    --win-success: #6CCB5F;
+    --win-warning: #FCE100;
+    --win-danger: #FF99A4;
+    --win-info: #60CDFF;
+
+    /* Windows Corner Radius (WinUI 3) */
+    --win-radius-sm: 4px;
+    --win-radius-md: 6px;
+    --win-radius-lg: 8px;
+    --win-radius-xl: 12px;
+
+    /* Windows Shadows (Fluent Design) */
+    --win-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.14), 0 0 2px rgba(0, 0, 0, 0.12);
+    --win-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.14), 0 0 2px rgba(0, 0, 0, 0.12);
+    --win-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.14), 0 0 2px rgba(0, 0, 0, 0.12);
+    --win-shadow-flyout: 0 8px 32px rgba(0, 0, 0, 0.28), 0 0 2px rgba(0, 0, 0, 0.24);
+
+    /* Windows Animation Timing */
+    --win-ease-standard: cubic-bezier(0.8, 0, 0.2, 1);
+    --win-ease-accelerate: cubic-bezier(0.9, 0.1, 1, 0.2);
+    --win-ease-decelerate: cubic-bezier(0.1, 0.9, 0.2, 1);
+    --win-ease-entrance: cubic-bezier(0, 0, 0, 1);
+
+    --win-duration-fast: 83ms;
+    --win-duration-normal: 167ms;
+    --win-duration-slow: 250ms;
+    --win-duration-slower: 333ms;
+}
+
+/* ===== GLOBAL STYLES ===== */
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--win-bg-solid);
+    color: var(--win-text-primary);
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
+/* ===== MICA EFFECT (Windows 11 Background) ===== */
+.app-container {
+    background: var(--win-mica-base);
+    backdrop-filter: blur(50px) saturate(125%);
+    -webkit-backdrop-filter: blur(50px) saturate(125%);
+}
+
+/* ===== CUSTOM TITLEBAR (Windows 11 Style) ===== */
+.win-titlebar {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background: transparent;
+    -webkit-app-region: drag;
+    user-select: none;
+    padding-left: 12px;
+    gap: 12px;
+}
+
+.win-titlebar-icon {
+    width: 16px;
+    height: 16px;
+    -webkit-app-region: no-drag;
+}
+
+.win-titlebar-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--win-text-secondary);
+    flex-shrink: 0;
+}
+
+.win-titlebar-spacer {
+    flex: 1;
+}
+
+.win-titlebar-buttons {
+    display: flex;
+    -webkit-app-region: no-drag;
+}
+
+.win-titlebar-btn {
+    width: 46px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--win-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--win-duration-fast) var(--win-ease-standard);
+}
+
+.win-titlebar-btn:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+.win-titlebar-btn.close:hover {
+    background: #C42B1C;
+    color: white;
+}
+
+.win-titlebar-btn svg {
+    width: 10px;
+    height: 10px;
+}
+
+/* ===== SIDEBAR (Navigation View) ===== */
+.sidebar-mini {
+    background: var(--win-acrylic) !important;
+    backdrop-filter: blur(40px) saturate(120%);
+    -webkit-backdrop-filter: blur(40px) saturate(120%);
+    border-right: 1px solid var(--win-stroke-divider) !important;
+    border-radius: 0;
+}
+
+.sidebar-mini .nav-icon-btn {
+    height: 36px;
+    margin: 2px 4px;
+    padding: 0 10px;
+    border-radius: var(--win-radius-md);
+    color: var(--win-text-secondary);
+    transition: all var(--win-duration-normal) var(--win-ease-standard);
+}
+
+.sidebar-mini .nav-icon-btn:hover {
+    background: var(--win-control-fill);
+    color: var(--win-text-primary);
+}
+
+.sidebar-mini .nav-icon-btn.active {
+    background: var(--win-accent-soft);
+    color: var(--win-accent-light);
+    border-left: 3px solid var(--win-accent);
+}
+
+.sidebar-mini .nav-icon-btn svg {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+}
+
+.sidebar-mini .nav-label {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* ===== TABS BAR (Windows 11 Tab Style) ===== */
+.tabs-bar {
+    background: var(--win-bg-layer) !important;
+    border-bottom: 1px solid var(--win-stroke-divider) !important;
+    height: 36px;
+    min-height: 36px;
+    padding: 4px 8px 0;
+    gap: 0;
+}
+
+.tab-item {
+    height: 32px;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    border-radius: var(--win-radius-md) var(--win-radius-md) 0 0;
+    color: var(--win-text-secondary);
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0;
+    transition: all var(--win-duration-fast) var(--win-ease-standard);
+    position: relative;
+}
+
+.tab-item:hover {
+    background: var(--win-control-fill);
+    color: var(--win-text-primary);
+}
+
+.tab-item.active {
+    background: var(--win-bg-solid);
+    color: var(--win-text-primary);
+    border: none;
+}
+
+.tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+    right: 8px;
+    height: 3px;
+    background: var(--win-accent);
+    border-radius: 3px 3px 0 0;
+}
+
+.tab-item .tab-icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+.tab-item .tab-close {
+    width: 20px;
+    height: 20px;
+    padding: 4px;
+    border-radius: var(--win-radius-sm);
+    margin-left: 6px;
+    margin-right: 0;
+}
+
+.tab-item .tab-close:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+.new-tab-btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: var(--win-radius-sm);
+    background: transparent;
+    color: var(--win-text-secondary);
+}
+
+.new-tab-btn:hover {
+    background: var(--win-control-fill);
+    color: var(--win-text-primary);
+}
+
+/* ===== VIEWS CONTAINER ===== */
+.views-container {
+    background: var(--win-bg-solid);
+}
+
+.tab-view {
+    padding: 16px 24px;
+}
+
+/* ===== CARDS (Windows 11 Card Style) ===== */
+.stat-card,
+.dashboard-card,
+.report-card,
+.department-card,
+.product-card,
+.settings-section {
+    background: var(--win-bg-layer) !important;
+    border: 1px solid var(--win-stroke-card) !important;
+    border-radius: var(--win-radius-lg) !important;
+    box-shadow: var(--win-shadow-sm);
+    transition: all var(--win-duration-normal) var(--win-ease-standard);
+}
+
+.stat-card:hover,
+.report-card:hover,
+.department-card:hover,
+.product-card:hover {
+    background: var(--win-bg-layer-alt) !important;
+    border-color: var(--win-stroke-surface) !important;
+    box-shadow: var(--win-shadow-md);
+    transform: translateY(-1px);
+}
+
+/* Stat Card Colors */
+.stat-card.highlight-green::before,
+.stat-card.highlight-green {
+    border-left-color: var(--win-success) !important;
+}
+
+.stat-card.highlight-blue::before,
+.stat-card.highlight-blue {
+    border-left-color: var(--win-accent) !important;
+}
+
+.stat-card.highlight-orange::before,
+.stat-card.highlight-orange {
+    border-left-color: var(--win-warning) !important;
+}
+
+/* ===== BUTTONS (Windows 11 Style) ===== */
+.btn {
+    padding: 5px 12px;
+    border-radius: var(--win-radius-md);
+    font-size: 13px;
+    font-weight: 400;
+    transition: all var(--win-duration-fast) var(--win-ease-standard);
+    border: 1px solid var(--win-stroke);
+}
+
+.btn-primary {
+    background: var(--win-accent);
+    border-color: transparent;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--win-accent-dark);
+}
+
+.btn-secondary {
+    background: var(--win-control-fill);
+    border-color: var(--win-stroke);
+    color: var(--win-text-primary);
+}
+
+.btn-secondary:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+.btn-ghost {
+    background: transparent;
+    border-color: transparent;
+    color: var(--win-text-secondary);
+}
+
+.btn-ghost:hover {
+    background: var(--win-control-fill);
+    color: var(--win-text-primary);
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--win-radius-md);
+    border: none;
+    background: var(--win-control-fill);
+}
+
+.btn-icon:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+/* ===== FORM INPUTS (Windows 11 TextBox Style) ===== */
+.form-input,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+select,
+textarea {
+    background: var(--win-control-fill) !important;
+    border: 1px solid var(--win-stroke) !important;
+    border-bottom: 2px solid var(--win-stroke-surface) !important;
+    border-radius: var(--win-radius-md) !important;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--win-text-primary);
+    transition: all var(--win-duration-fast) var(--win-ease-standard);
+}
+
+.form-input:hover,
+input:hover,
+select:hover,
+textarea:hover {
+    background: var(--win-control-fill-secondary) !important;
+}
+
+.form-input:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--win-stroke) !important;
+    border-bottom: 2px solid var(--win-accent) !important;
+    box-shadow: none !important;
+}
+
+.form-input::placeholder,
+input::placeholder {
+    color: var(--win-text-tertiary);
+}
+
+/* Search box specific */
+.search-bar input,
+.large-search-box input,
+.pos-search-input {
+    border-radius: var(--win-radius-lg) !important;
+}
+
+.large-search-box {
+    border-radius: var(--win-radius-lg) !important;
+    border: 1px solid var(--win-stroke) !important;
+    background: var(--win-control-fill) !important;
+}
+
+.large-search-box:focus-within {
+    border-color: var(--win-accent) !important;
+    box-shadow: 0 0 0 1px var(--win-accent-soft) !important;
+}
+
+/* ===== TABLES (Windows 11 DataGrid Style) ===== */
+.data-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table thead {
+    background: var(--win-control-fill-tertiary);
+}
+
+.data-table th {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--win-text-secondary);
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--win-stroke-divider);
+}
+
+.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--win-stroke-divider);
+    color: var(--win-text-primary);
+    font-size: 13px;
+}
+
+.data-table tbody tr {
+    transition: background var(--win-duration-fast) var(--win-ease-standard);
+}
+
+.data-table tbody tr:hover {
+    background: var(--win-control-fill);
+}
+
+.table-container {
+    border-radius: var(--win-radius-lg);
+    border: 1px solid var(--win-stroke-card);
+    overflow: hidden;
+}
+
+/* ===== MODALS / FLYOUTS (Windows 11 ContentDialog) ===== */
+.modal-content,
+.modal-dialog {
+    background: var(--win-mica-alt) !important;
+    border: 1px solid var(--win-stroke-surface);
+    border-radius: var(--win-radius-xl) !important;
+    box-shadow: var(--win-shadow-flyout) !important;
+    backdrop-filter: blur(60px) saturate(125%);
+    -webkit-backdrop-filter: blur(60px) saturate(125%);
+}
+
+.modal-header {
+    border-bottom: none;
+    padding: 20px 24px 8px;
+}
+
+.modal-header h5 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--win-text-primary);
+}
+
+.modal-body {
+    padding: 16px 24px;
+}
+
+.modal-footer {
+    padding: 16px 24px 24px;
+    border-top: none;
+    gap: 8px;
+}
+
+/* ===== DROPDOWNS / FLYOUTS ===== */
+.new-tab-dropdown,
+.dropdown-menu,
+.pos-search-results {
+    background: var(--win-mica-alt) !important;
+    border: 1px solid var(--win-stroke-surface) !important;
+    border-radius: var(--win-radius-lg) !important;
+    box-shadow: var(--win-shadow-flyout) !important;
+    backdrop-filter: blur(60px) saturate(125%);
+    -webkit-backdrop-filter: blur(60px) saturate(125%);
+    padding: 4px;
+}
+
+.new-tab-dropdown-item,
+.dropdown-item,
+.pos-dropdown-item {
+    padding: 8px 12px;
+    border-radius: var(--win-radius-md);
+    font-size: 13px;
+    color: var(--win-text-primary);
+    transition: background var(--win-duration-fast) var(--win-ease-standard);
+}
+
+.new-tab-dropdown-item:hover,
+.dropdown-item:hover,
+.pos-dropdown-item:hover {
+    background: var(--win-control-fill);
+}
+
+/* ===== SCROLLBARS (Windows 11 Fluent) ===== */
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--win-control-fill-secondary);
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    border-radius: 7px;
+    min-height: 40px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--win-control-fill-tertiary);
+    border: 4px solid transparent;
+    background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* Scrollbar on hover visibility */
+.views-container,
+.tab-view,
+.modal-body,
+.data-table-container {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color var(--win-duration-normal);
+}
+
+.views-container:hover,
+.tab-view:hover,
+.modal-body:hover,
+.data-table-container:hover {
+    scrollbar-color: var(--win-control-fill-secondary) transparent;
+}
+
+/* ===== NOTIFICATIONS (Windows 11 Toast) ===== */
+.notification,
+.toast {
+    background: var(--win-mica-alt) !important;
+    border: 1px solid var(--win-stroke-surface) !important;
+    border-radius: var(--win-radius-lg) !important;
+    box-shadow: var(--win-shadow-flyout) !important;
+    backdrop-filter: blur(60px) saturate(125%);
+    -webkit-backdrop-filter: blur(60px) saturate(125%);
+    padding: 12px 16px;
+}
+
+.notification.success {
+    border-left: 3px solid var(--win-success);
+}
+
+.notification.error {
+    border-left: 3px solid var(--win-danger);
+}
+
+.notification.info {
+    border-left: 3px solid var(--win-accent);
+}
+
+.notification.warning {
+    border-left: 3px solid var(--win-warning);
+}
+
+/* ===== BADGES ===== */
+.badge,
+.stock-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: var(--win-radius-sm);
+}
+
+.badge.success,
+.stock-badge.high {
+    background: rgba(108, 203, 95, 0.15);
+    color: var(--win-success);
+}
+
+.badge.danger,
+.stock-badge.low {
+    background: rgba(255, 153, 164, 0.15);
+    color: var(--win-danger);
+}
+
+.badge.warning,
+.stock-badge.medium {
+    background: rgba(252, 225, 0, 0.15);
+    color: var(--win-warning);
+}
+
+/* ===== POS SPECIFIC STYLES ===== */
+.pos-top-bar {
+    background: var(--win-bg-layer) !important;
+    border-bottom: 1px solid var(--win-stroke-divider) !important;
+}
+
+.pos-shift-badge {
+    background: var(--win-control-fill);
+    border: 1px solid var(--win-stroke);
+    border-radius: var(--win-radius-lg);
+}
+
+.pos-user-badge {
+    background: var(--win-control-fill) !important;
+    border: 1px solid var(--win-stroke) !important;
+    border-radius: var(--win-radius-lg);
+}
+
+.pos-menu-btn {
+    background: var(--win-control-fill);
+    border: 1px solid var(--win-stroke);
+    border-radius: var(--win-radius-md);
+    transition: all var(--win-duration-fast) var(--win-ease-standard);
+}
+
+.pos-menu-btn:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+.pos-search-wrapper {
+    background: var(--win-control-fill) !important;
+    border: 1px solid var(--win-stroke) !important;
+    border-radius: var(--win-radius-lg) !important;
+}
+
+.pos-search-wrapper:focus-within {
+    border-color: var(--win-accent) !important;
+    border-bottom: 2px solid var(--win-accent) !important;
+}
+
+/* ===== LOGIN SCREEN (Windows Hello Style) ===== */
+#loginOverlay {
+    background: var(--win-bg-solid) !important;
+}
+
+#loginOverlay>div {
+    background: var(--win-mica-alt) !important;
+    border: 1px solid var(--win-stroke-surface) !important;
+    border-radius: var(--win-radius-xl) !important;
+    backdrop-filter: blur(60px) saturate(125%);
+    -webkit-backdrop-filter: blur(60px) saturate(125%);
+}
+
+#loginOverlay input {
+    background: var(--win-control-fill) !important;
+    border: 1px solid var(--win-stroke) !important;
+    border-bottom: 2px solid var(--win-stroke-surface) !important;
+}
+
+#loginOverlay input:focus {
+    border-bottom-color: var(--win-accent) !important;
+}
+
+#loginOverlay button[type="button"] {
+    background: var(--win-accent) !important;
+    border-radius: var(--win-radius-md) !important;
+    font-weight: 600;
+}
+
+/* ===== DASHBOARD WELCOME ===== */
+.dashboard-welcome {
+    background: var(--win-bg-layer);
+    border: 1px solid var(--win-stroke-card);
+    border-radius: var(--win-radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.welcome-text h1 {
+    color: var(--win-text-primary);
+    font-weight: 400;
+}
+
+.welcome-subtitle {
+    color: var(--win-text-secondary);
+}
+
+/* ===== ANIMATIONS (Fluent Design Motion) ===== */
+@keyframes win-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes win-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes win-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.tab-view.active {
+    animation: win-fade-in var(--win-duration-slow) var(--win-ease-decelerate);
+}
+
+.modal-content {
+    animation: win-scale-in var(--win-duration-normal) var(--win-ease-decelerate);
+}
+
+.notification {
+    animation: win-slide-up var(--win-duration-normal) var(--win-ease-entrance);
+}
+
+/* ===== FOCUS INDICATORS (Accessibility) ===== */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--win-text-primary);
+    outline-offset: 2px;
+}
+
+/* ===== SELECTION COLOR ===== */
+::selection {
+    background: var(--win-accent);
+    color: white;
+}
+
+/* ===== DISABLED STATES ===== */
+button:disabled,
+input:disabled,
+select:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ===== PROGRESS BARS (Windows 11 Style) ===== */
+.progress-bar {
+    height: 4px;
+    background: var(--win-control-fill);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--win-accent);
+    border-radius: 2px;
+    transition: width var(--win-duration-slow) var(--win-ease-standard);
+}
+
+/* ===== CHECKBOX / TOGGLE (Windows 11 Style) ===== */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--win-control-fill);
+    border: 1px solid var(--win-stroke);
+    border-radius: var(--win-radius-sm);
+    cursor: pointer;
+    transition: all var(--win-duration-fast) var(--win-ease-standard);
+}
+
+input[type="checkbox"]:hover {
+    background: var(--win-control-fill-secondary);
+}
+
+input[type="checkbox"]:checked {
+    background: var(--win-accent);
+    border-color: var(--win-accent);
+}
+
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    display: block;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 16px;
+}
+
+/* ===== TOOLTIP (Windows 11 Style) ===== */
+[title] {
+    position: relative;
+}
+
+/* ===== CONTEXT MENU STYLE ===== */
+.context-menu {
+    background: var(--win-mica-alt);
+    border: 1px solid var(--win-stroke-surface);
+    border-radius: var(--win-radius-lg);
+    box-shadow: var(--win-shadow-flyout);
+    backdrop-filter: blur(60px) saturate(125%);
+    padding: 4px;
+    min-width: 180px;
+}
+
+.context-menu-item {
+    padding: 8px 12px;
+    border-radius: var(--win-radius-md);
+    font-size: 13px;
+    color: var(--win-text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.context-menu-item:hover {
+    background: var(--win-control-fill);
+}
+
+.context-menu-divider {
+    height: 1px;
+    background: var(--win-stroke-divider);
+    margin: 4px 0;
+}
+
+/* ===== INTEGRATED TITLE BAR (Simulates Windows 11 Title Bar) ===== */
+/* Makes the tabs bar look like an integrated title bar */
+.tabs-bar {
+    -webkit-app-region: drag;
+    /* Makes the area draggable like a title bar */
+}
+
+.tabs-bar .tab-item,
+.tabs-bar .new-tab-btn,
+.tabs-bar button {
+    -webkit-app-region: no-drag;
+    /* Buttons should be clickable */
+}
+
+/* App icon in sidebar header */
+.sidebar-mini::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 32px;
+    -webkit-app-region: drag;
+}
+
+/* Make the whole app feel more integrated */
+.app-container {
+    border-radius: var(--win-radius-lg);
+    overflow: hidden;
+}
+
+/* Windows 11 Title Bar Integration for main area */
+.main-area {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make tabs bar look like part of title bar */
+.tabs-bar {
+    background: var(--win-bg-layer) !important;
+    min-height: 40px;
+    padding-top: 4px;
+    padding-right: 138px;
+    /* Space for window controls */
+}
+
+/* Compact mode for when window is not maximized */
+@media (max-height: 700px) {
+    .tabs-bar {
+        height: 32px;
+        min-height: 32px;
+    }
+
+    .tab-item {
+        height: 28px;
+        font-size: 11px;
+    }
+}
+
+/* ===== COMPACT DENSITY MODE (Windows 11 Compact) ===== */
+.compact-mode .nav-icon-btn {
+    height: 32px;
+    padding: 0 8px;
+}
+
+.compact-mode .tab-item {
+    height: 28px;
+    padding: 0 10px;
+}
+
+.compact-mode .btn {
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+/* ===== HIGH CONTRAST MODE SUPPORT ===== */
+@media (prefers-contrast: high) {
+    :root {
+        --win-stroke: rgba(255, 255, 255, 0.5);
+        --win-stroke-card: rgba(255, 255, 255, 0.3);
+        --win-accent: #00ADEF;
+    }
+
+    .btn-primary {
+        border: 2px solid white;
+    }
+}
+
+/* ===== REDUCED MOTION PREFERENCE ===== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ===== KEYBOARD NAVIGATION IMPROVEMENTS ===== */
+.nav-icon-btn:focus-visible,
+.tab-item:focus-visible {
+    outline: 2px solid var(--win-accent);
+    outline-offset: -2px;
+}
+
+/* ===== LOADING STATES ===== */
+.win-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    color: var(--win-text-secondary);
+}
+
+.win-loading-ring {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--win-control-fill);
+    border-top-color: var(--win-accent);
+    border-radius: 50%;
+    animation: win-spin 1s linear infinite;
+}
+
+@keyframes win-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== EMPTY STATE (Windows 11 Style) ===== */
+.win-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--win-text-tertiary);
+}
+
+.win-empty-state svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: var(--win-text-disabled);
+}
+
+.win-empty-state h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--win-text-secondary);
+    margin: 0 0 8px;
+}
+
+.win-empty-state p {
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ===== TICKETS Y RECIBOS (Estilo Papel Blanco) ===== */
+/* Los modales de tickets/recibos deben verse como papel real */
+#abonoReceiptModal .modal-content,
+#movementDetailModal .modal-content,
+#cashCutReportModal .modal-content {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Todo el texto dentro debe ser negro */
+#abonoReceiptModal .modal-content *,
+#movementDetailModal .modal-content *,
+#cashCutReportModal .modal-content * {
+    color: #000000 !important;
+}
+
+/* Excepción para colores de dinero */
+#abonoReceiptModal .modal-content [style*="color: #22c55e"],
+#movementDetailModal .modal-content [style*="color: #22c55e"],
+#abonoReceiptModal .modal-content [style*="22c55e"],
+#movementDetailModal .modal-content [style*="22c55e"] {
+    color: #22c55e !important;
+}
+
+#abonoReceiptModal .modal-content [style*="color: #ef4444"],
+#movementDetailModal .modal-content [style*="color: #ef4444"],
+#abonoReceiptModal .modal-content [style*="ef4444"],
+#movementDetailModal .modal-content [style*="ef4444"] {
+    color: #ef4444 !important;
+}
+
+/* Botones en los tickets */
+#abonoReceiptModal .modal-content .btn-ghost,
+#movementDetailModal .modal-content .btn-ghost,
+#cashCutReportModal .modal-content .btn-ghost {
+    color: #333333 !important;
+    border: 1px solid #cccccc !important;
+    background: transparent !important;
+}
+
+#abonoReceiptModal .modal-content .btn-ghost:hover,
+#movementDetailModal .modal-content .btn-ghost:hover,
+#cashCutReportModal .modal-content .btn-ghost:hover {
+    background: #f5f5f5 !important;
+}
+
+#abonoReceiptModal .modal-content .btn-primary,
+#movementDetailModal .modal-content .btn-primary,
+#cashCutReportModal .modal-content .btn-primary {
+    background: #0078D4 !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* Líneas punteadas del ticket */
+#abonoReceiptModal hr,
+#movementDetailModal hr,
+#cashCutReportModal hr {
+    border: none !important;
+    border-top: 1px dashed #cccccc !important;
+}
+
+/* Botón de cerrar */
+#abonoReceiptModal .modal-content button[style*="font-size: 2rem"],
+#movementDetailModal .modal-content button[style*="font-size: 2rem"] {
+    color: #999999 !important;
+}
+
+#abonoReceiptModal .modal-content button[style*="font-size: 2rem"]:hover,
+#movementDetailModal .modal-content button[style*="font-size: 2rem"]:hover {
+    color: #333333 !important;
+}

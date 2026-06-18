@@ -1,0 +1,397 @@
+/* ===================================================== */
+/* ESTILOS ADICIONALES PARA PROVEEDORES Y UTILIDADES */
+/* Agregar al final del archivo styles.css */
+/* ===================================================== */
+
+/* ===== Action Buttons in Tables ===== */
+.action-btns {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.btn-action {
+    background: transparent;
+    border: none;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-action svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+.btn-action.edit {
+    color: var(--primary-400);
+}
+
+.btn-action.edit:hover {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-500);
+}
+
+.btn-action.delete {
+    color: var(--danger-500);
+}
+
+.btn-action.delete:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger-600);
+}
+
+/* ===== Movement and Product Items (Dashboard) ===== */
+.movement-item,
+.product-item {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--dark-border);
+    transition: background var(--transition-fast);
+}
+
+.movement-item:last-child,
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.movement-item:hover,
+.product-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--gray-100);
+}
+
+.item-subtitle {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+}
+
+/* ===== Filters Row ===== */
+.filters-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.filter-select {
+    width: auto;
+    min-width: 200px;
+}
+
+/* ===== Profit/Utility Specific Styles ===== */
+.profit-summary {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.profit-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.profit-stat {
+    text-align: center;
+    padding: var(--spacing-md);
+    background: var(--dark-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--dark-border);
+}
+
+.profit-stat .stat-label {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-value-cost {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--warning-500);
+}
+
+.stat-value-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--info-500);
+}
+
+.stat-value-profit {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--success-500);
+}
+
+.stat-value-percent {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-500);
+}
+
+/* ===== Profit Badges ===== */
+.profit-high {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-500);
+    font-weight: 700;
+}
+
+.profit-medium {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--warning-500);
+    font-weight: 600;
+}
+
+.profit-low {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--danger-500);
+    font-weight: 600;
+}
+
+/* ===== Recommendations List ===== */
+.recommendations-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--spacing-md) 0;
+}
+
+.recommendations-list li {
+    padding: var(--spacing-md);
+    background: rgba(59, 130, 246, 0.05);
+    border-left: 3px solid var(--primary-500);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    color: var(--gray-200);
+}
+
+.recommendations-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Utility Margins ===== */
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+    margin-bottom: 1rem;
+}
+
+.mt-3 {
+    margin-top: 1rem;
+}
+
+/* ===== Enhanced Table Styles for Profit Reports ===== */
+.data-table tr.highlight-best {
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.data-table tr.highlight-worst {
+    background: rgba(239, 68, 68, 0.05);
+}
+
+/* ===== Supplier-specific badges ===== */
+.badge-supplier-active {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-500);
+}
+
+.badge-supplier-inactive {
+    background: rgba(107, 114, 128, 0.1);
+    color: var(--gray-400);
+}
+
+/* ===== Responsive adjustments ===== */
+@media (max-width: 768px) {
+    .profit-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-row {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+}
+
+/* ===== Profit Calculation Display in Form ===== */
+#profitCalculation {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Enhanced Card hover effects ===== */
+.card.profit-card {
+    border: 1px solid transparent;
+    transition: all var(--transition-base);
+}
+
+.card.profit-card:hover {
+    border-color: var(--primary-500);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* ===== Status indicators ===== */
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--spacing-xs);
+}
+
+.status-dot.active {
+    background: var(--success-500);
+    box-shadow: 0 0 6px var(--success-500);
+}
+
+.status-dot.inactive {
+    background: var(--gray-500);
+}
+
+/* ===== Data grid for comparison view ===== */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.comparison-card {
+    background: var(--dark-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    border: 2px solid var(--dark-border);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.comparison-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--info-500));
+}
+
+.comparison-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-500);
+}
+
+.comparison-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--dark-border);
+}
+
+.comparison-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: white;
+}
+
+.comparison-rank {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-400);
+}
+
+.comparison-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.comparison-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+}
+
+.comparison-stat-label {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+}
+
+.comparison-stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-100);
+}
+
+/* ===== Print Styles ===== */
+@media print {
+
+    .sidebar,
+    .btn,
+    .modal-close,
+    .action-btns {
+        display: none !important;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .data-table {
+        border: 1px solid #000;
+    }
+
+    .data-table th,
+    .data-table td {
+        border: 1px solid #000;
+        color: black;
+    }
+}

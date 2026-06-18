@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="300" height="300" viewBox="0, 0, 300, 300">
+  <g id="Background">
+    <rect x="0" y="0" width="300" height="300" fill="#000000" fill-opacity="0"/>
+  </g>
+  <g id="Layer_1">
+    <path d="M136.6,56.2 L163.4,56.2 L163.4,243.8 L136.6,243.8 L136.6,56.2 z" fill="#8C8C8C" id="path"/>
+    <path d="M150,88.4 L100.4,38.8 L119.2,20 L150,50.8 L180.8,20 L199.6,38.8 L150,88.4 z" fill="#8C8C8C" id="path_1"/>
+    <path d="M180.8,280 L150,249.2 L119.2,280 L100.4,261.2 L150,211.6 L199.6,261.2 L180.8,280 z" fill="#8C8C8C" id="path_2"/>
+    <path d="M63.4,188.4 L222.5,88.9 L236.7,111.6 L77.6,211.1 L63.4,188.4 z" fill="#8C8C8C" id="path_3"/>
+    <path d="M270.6,132.6 L202.2,117.9 L218.3,49.5 L243.8,54.9 L234.4,97.8 L275.9,107.2 L270.6,132.6 z" fill="#8C8C8C" id="path_4"/>
+    <path d="M81.6,250.5 L56.1,245.1 L65.5,202.2 L24,192.9 L29.4,167.4 L97.8,182.1 L81.6,250.5 z" fill="#8C8C8C" id="path_5"/>
+    <path d="M63.4,111.6 L77.6,88.9 L236.7,188.4 L222.5,211.1 L63.4,111.6 z" fill="#8C8C8C" id="path_6"/>
+    <path d="M29.4,132.6 L24,107.1 L65.5,97.7 L56.1,54.8 L81.6,49.4 L97.7,117.8 L29.4,132.6 z" fill="#8C8C8C" id="path_7"/>
+    <path d="M218.4,250.5 L202.3,182.1 L270.7,167.4 L276.1,192.9 L234.6,202.3 L244,245.2 L218.4,250.5 z" fill="#8C8C8C" id="path_8"/>
+  </g>
+</svg>

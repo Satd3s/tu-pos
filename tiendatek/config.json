@@ -1,0 +1,24 @@
+{
+	"fcmCredentials": {
+		"keys": {
+			"privateKey": "w9ucYBmQh11J1CbJmBnYN6BJz1pJyA-2dwdDQS2v-po",
+			"publicKey": "BCkTeX7XILliTCJxpLGuGlbgJvXi3fBY2jDRU0DI2Z_xf1cZhHT3krb_fm-cyUfGy4fs8-3O7ZIStZFWCzTwIxk",
+			"authSecret": "vllnERGwhb5xWMCzOOt0VQ"
+		},
+		"fcm": {
+			"name": "projects/ttpc-4673a/registrations/c51VKtNjbQMVtOoxJR00i5:APA91bEE6G0McrYyoXL5rdaZ112-goqAHWWMW2JSDlEIXXPL-vJUBtw5ecPARVJwysJL-Bd2mfQC_E7-EETeQeQhuLFDEoIV5LpS0c7ouyBlsGuA25qLDHY",
+			"token": "c51VKtNjbQMVtOoxJR00i5:APA91bEE6G0McrYyoXL5rdaZ112-goqAHWWMW2JSDlEIXXPL-vJUBtw5ecPARVJwysJL-Bd2mfQC_E7-EETeQeQhuLFDEoIV5LpS0c7ouyBlsGuA25qLDHY",
+			"web": {
+				"endpoint": "https://fcm.googleapis.com/fcm/send/eFjBRsGbqnE:APA91bGV6SGwtE8cjHyo-es3XpC_BvkEqeSp9aVe_uIKUFmcWBiuCd5h-wynfj2LExLom4GatgY6Iv-sKLzNv12Bs9R3NLbPQGOUu8o9e9PSBQtJDTu078HYRC__4Vb8g2kL_FZSvjnv",
+				"p256dh": "BCkTeX7XILliTCJxpLGuGlbgJvXi3fBY2jDRU0DI2Z_xf1cZhHT3krb_fm-cyUfGy4fs8-3O7ZIStZFWCzTwIxk",
+				"auth": "vllnERGwhb5xWMCzOOt0VQ"
+			}
+		},
+		"gcm": {
+			"token": "eFjBRsGbqnE:APA91bGV6SGwtE8cjHyo-es3XpC_BvkEqeSp9aVe_uIKUFmcWBiuCd5h-wynfj2LExLom4GatgY6Iv-sKLzNv12Bs9R3NLbPQGOUu8o9e9PSBQtJDTu078HYRC__4Vb8g2kL_FZSvjnv",
+			"androidId": "5415498583647894703",
+			"securityToken": "3972393746743159353",
+			"appId": "wp:receiver.push.com#7fb3f2e2-4a7d-4c6a-b34f-0fe47d4181c1"
+		}
+	}
+}

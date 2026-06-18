@@ -1,0 +1,140 @@
+{
+  "version": "2.0.0",
+  "first_run": false,
+  "setup_completed": true,
+  "company": {
+    "name": "SALCHICHONERIA NAFER",
+    "slogan": "",
+    "phone": "6275231578",
+    "email": "",
+    "address": "JESUS GARCIA 25 COL CENTRO",
+    "city": "",
+    "state": "",
+    "country": "México",
+    "postal_code": "",
+    "rfc": "",
+    "logo_path": ""
+  },
+  "regional": {
+    "currency": "MXN",
+    "currency_symbol": "$",
+    "currency_position": "before",
+    "decimal_separator": ".",
+    "thousands_separator": ",",
+    "decimals": 2,
+    "date_format": "DD/MM/YYYY",
+    "time_format": "24h",
+    "timezone": "America/Mexico_City",
+    "language": "es"
+  },
+  "taxes": {
+    "enabled": true,
+    "default_rate": 16,
+    "name": "IVA",
+    "included_in_price": true
+  },
+  "modules": {
+    "inventory": {
+      "enabled": true,
+      "required": true,
+      "name": "Inventario",
+      "description": "Gestión de productos, stock y categorías",
+      "icon": "📦"
+    },
+    "pos": {
+      "enabled": true,
+      "required": false,
+      "name": "Punto de Venta",
+      "description": "Caja registradora, ventas y tickets",
+      "icon": "💰"
+    },
+    "customers": {
+      "enabled": true,
+      "required": false,
+      "name": "Clientes",
+      "description": "Gestión de clientes, créditos y cuentas por cobrar",
+      "icon": "👥"
+    },
+    "suppliers": {
+      "enabled": true,
+      "required": false,
+      "name": "Proveedores",
+      "description": "Gestión de proveedores y compras",
+      "icon": "🚚"
+    },
+    "reports": {
+      "enabled": true,
+      "required": false,
+      "name": "Reportes",
+      "description": "Estadísticas, gráficos y reportes",
+      "icon": "📊"
+    },
+    "users": {
+      "enabled": false,
+      "required": false,
+      "name": "Usuarios",
+      "description": "Multi-usuario con roles y permisos",
+      "icon": "👤"
+    },
+    "multicash": {
+      "enabled": false,
+      "required": false,
+      "name": "Multicaja",
+      "description": "Sistema servidor/cliente para múltiples cajas",
+      "icon": "🏪"
+    }
+  },
+  "sales": {
+    "check_stock": true,
+    "allow_negative_stock": false,
+    "show_purchase_price": false,
+    "round_prices": true,
+    "round_to": 0.5,
+    "require_customer": false,
+    "default_payment_method": "cash",
+    "print_ticket_auto": true,
+    "ticket_copies": 1
+  },
+  "inventory": {
+    "low_stock_alert": true,
+    "low_stock_threshold": 10,
+    "auto_generate_code": true,
+    "code_prefix": "PROD",
+    "track_lots": false,
+    "track_expiration": false
+  },
+  "network": {
+    "mode": "standalone",
+    "server_ip": "",
+    "server_port": 5000,
+    "station_name": "CAJA-1",
+    "station_id": 1,
+    "auto_sync": true,
+    "sync_interval": 30,
+    "api_key": "tupos-api-key-2024",
+    "offline_mode_enabled": true
+  },
+  "appearance": {
+    "theme": "dark",
+    "accent_color": "#3b82f6",
+    "font_size": "medium",
+    "compact_mode": false,
+    "animations": true
+  },
+  "ticket": {
+    "width": 80,
+    "header_text": "",
+    "footer_text": "¡Gracias por su compra!",
+    "show_logo": true,
+    "show_address": true,
+    "show_phone": true
+  },
+  "metadata": {
+    "created_at": "2025-12-18T13:38:50.185519",
+    "updated_at": "2026-05-29T10:15:44.164033",
+    "last_backup": ""
+  },
+  "gui": {
+    "theme": "dark"
+  }
+}

@@ -1,0 +1,45 @@
+# =============================================================================
+# DEPENDENCIAS DEL PROYECTO
+# Sistema de Inventario - Python + Eel + SQLite
+# =============================================================================
+
+# Framework web para comunicación Python-JavaScript
+eel>=0.16.0
+
+# Servidor web
+bottle>=0.12.25
+
+# Para empaquetar como ejecutable
+pyinstaller>=6.0.0
+
+# ===== SISTEMA MULTICAJA (Cliente/Servidor) =====
+# API REST para el servidor
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Cliente HTTP para modo cliente
+requests>=2.31.0
+
+# ===== FIN MULTICAJA =====
+
+# Utilidades de Windows (opcional, para integración avanzada)
+# pywin32>=306
+
+# Para impresión de tickets (opcional)
+# python-escpos>=3.1
+
+# Para comunicación serial (básculas, impresoras seriales)
+pyserial>=3.5
+
+# Para generar PDFs (opcional)
+# reportlab>=4.0.0
+# weasyprint>=60.0
+
+# ===== ESCÁNER MÓVIL =====
+# Para generar códigos QR
+qrcode[pil]>=7.4.0
+
+# ===== ENTORNO HÍBRIDO NATIVO =====
+# Interfaz Nativa y Chromium Embebido
+PyQt6>=6.5.0
+PyQt6-WebEngine>=6.5.0

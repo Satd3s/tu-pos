@@ -1,0 +1,21 @@
+{
+  "name": "ttweb",
+  "version": "1.19.0",
+  "productName": "Tiendatek",
+  "private": true,
+  "license": "All rights reserved",
+  "main": "background.js",
+  "dependencies": {
+    "@journeyapps/sqlcipher": "5.2.0",
+    "@mdi/font": "^6.7.96",
+    "electron-store": "8.2.0"
+  },
+  "resolutions": {
+    "vue-cli-plugin-electron-builder/electron-builder": "^23.0.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint"
+    }
+  }
+}

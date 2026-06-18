@@ -1,0 +1,34 @@
+﻿# Ignore all built binaries recursively
+*.dll
+*.exe
+*.pak
+*.bin
+*.asar
+*.sys
+*.obj
+*.pdb
+*.lib
+
+# Specific folders to ignore
+node_modules/
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.vscode/
+.idea/
+bin/
+obj/
+
+# Database files
+*.fdb
+*.FDB
+*.fbk
+*.db
+*.sqlite
+*.sqlite3
+
+# Temp files
+*.log
+*.tmp

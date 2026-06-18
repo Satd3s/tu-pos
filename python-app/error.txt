@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "C:\Users\_SATD3S_\Documents\InventorySystem\python-app\run_native.py", line 21, in <module>
+    @eel.expose
+     ^^^^^^^^^^
+  File "C:\Users\_SATD3S_\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\eel\__init__.py", line 115, in expose
+    _expose(function.__name__, function)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\_SATD3S_\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\eel\__init__.py", line 625, in _expose
+    assert name not in _exposed_functions, msg
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Already exposed function with name "get_logged_user_bypass"
+
+==================================================
+Cerrando aplicacion...
+==================================================
+Creando respaldo automatico de la base de datos...
+[OK] Respaldo creado exitosamente:
+     Ubicacion: C:\Users\_SATD3S_\Documents\InventorySystem\python-app\backups\inventory_backup_20251230_114209.db
+     Total de respaldos guardados: 10
+==================================================
+Hasta pronto!
+==================================================
+

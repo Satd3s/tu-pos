@@ -1,0 +1,72 @@
+<UserControl x:Class="TuPos.App.Views.InventoryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Panel with actions -->
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Catálogo de Inventario" FontSize="22" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+            <Button Content="Actualizar Lista ↻" Style="{StaticResource {x:Type Button}}" 
+                    HorizontalAlignment="Right" Height="40" Padding="15,0"
+                    Command="{Binding LoadProductsCommand}"/>
+        </Grid>
+
+        <!-- Grid Table Container -->
+        <Border Grid.Row="1" Background="{StaticResource BrushBgCard}" CornerRadius="12" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" Padding="15">
+            <DataGrid ItemsSource="{Binding Products}" AutoGenerateColumns="False" 
+                      CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single"
+                      SelectedItem="{Binding SelectedProduct}"
+                      Background="Transparent" BorderThickness="0" RowBackground="Transparent"
+                      Foreground="White" GridLinesVisibility="None" RowHeaderWidth="0" FontSize="14">
+                
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{StaticResource BrushTextSec}"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="Padding" Value="5,10"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="{StaticResource BrushBorder}"/>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="#2d3748"/>
+                        <Setter Property="Padding" Value="0,5"/>
+                    </Style>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <Border Padding="5,12" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Código" Binding="{Binding Code}" Width="130" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Producto" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Categoría" Binding="{Binding Category}" Width="120" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Stock" Binding="{Binding Stock}" Width="90" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="U. Medida" Binding="{Binding Unit}" Width="90" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Costo" Binding="{Binding PurchaseCost, StringFormat=C2}" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Precio Venta" Binding="{Binding PublicPrice, StringFormat=C2}" Width="110" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

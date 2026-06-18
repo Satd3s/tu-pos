@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración Inicial - Tu POS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --border: #334155;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a2e 50%, var(--bg-primary) 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .wizard-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        /* Header con progreso */
+        .wizard-header {
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .wizard-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .wizard-header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Progress Steps */
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .step-circle.active {
+            background: white;
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .step-circle.completed {
+            background: var(--success);
+            border-color: white;
+        }
+
+        .step-line {
+            width: 30px;
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+
+        .step-line.completed {
+            background: white;
+        }
+
+        /* Content Area */
+        .wizard-content {
+            padding: 40px;
+            min-height: 400px;
+        }
+
+        .step-container {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-title .icon {
+            font-size: 1.8rem;
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+        }
+
+        input::placeholder {
+            color: var(--text-muted);
+        }
+
+        /* Logo Upload */
+        .logo-upload {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            border: 2px dashed var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .logo-upload:hover {
+            border-color: var(--accent);
+            background: var(--bg-hover);
+        }
+
+        .logo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .logo-preview .placeholder {
+            font-size: 2.5rem;
+            opacity: 0.5;
+        }
+
+        .logo-info h4 {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .logo-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Module Cards */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .module-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .module-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .module-card.selected {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .module-card.required {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .module-card .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .module-card h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .module-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .module-card .check {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .module-card.selected .check {
+            background: var(--accent);
+        }
+
+        .module-card .check::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .module-card.selected .check::after {
+            opacity: 1;
+        }
+
+        .required-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--warning);
+            color: black;
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Network Mode Cards */
+        .network-modes {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .network-modes {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .network-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .network-card:hover {
+            border-color: var(--accent);
+        }
+
+        .network-card.selected {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .network-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .network-card h4 {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .network-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .server-config {
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            display: none;
+        }
+
+        .server-config.visible {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Currency Select with Preview */
+        .currency-preview {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .currency-example {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--success);
+        }
+
+        /* Footer */
+        .wizard-footer {
+            padding: 25px 40px;
+            background: var(--bg-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success) 0%, #16a34a 100%);
+            color: white;
+        }
+
+        /* Welcome Animation */
+        .welcome-animation {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .welcome-icon {
+            font-size: 5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .welcome-animation h2 {
+            font-size: 2rem;
+            margin: 20px 0 10px;
+        }
+
+        .welcome-animation p {
+            color: var(--text-secondary);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Final Summary */
+        .summary-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+        }
+
+        .summary-item .label {
+            color: var(--text-secondary);
+        }
+
+        .summary-item .value {
+            font-weight: 600;
+        }
+
+        .modules-summary {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .module-tag {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Checkbox Toggle */
+        .toggle-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+        }
+
+        .toggle-info h4 {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .toggle-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .toggle {
+            position: relative;
+            width: 50px;
+            height: 28px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--border);
+            border-radius: 28px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider::before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--accent);
+        }
+
+        .toggle input:checked + .toggle-slider::before {
+            transform: translateX(22px);
+        }
+
+        /* Hidden file input */
+        #logoInput {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wizard-container">
+        <!-- Header con Progreso -->
+        <div class="wizard-header">
+            <h1>⚡ Configuración Inicial</h1>
+            <p>Configura tu sistema de punto de venta en pocos pasos</p>
+            
+            <div class="progress-container">
+                <div class="progress-step">
+                    <div class="step-circle active" id="step-dot-1">1</div>
+                </div>
+                <div class="step-line" id="line-1"></div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step-dot-2">2</div>
+                </div>
+                <div class="step-line" id="line-2"></div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step-dot-3">3</div>
+                </div>
+                <div class="step-line" id="line-3"></div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step-dot-4">4</div>
+                </div>
+                <div class="step-line" id="line-4"></div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step-dot-5">5</div>
+                </div>
+                <div class="step-line" id="line-5"></div>
+                <div class="progress-step">
+                    <div class="step-circle" id="step-dot-6">6</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="wizard-content">
+            
+            <!-- PASO 1: Bienvenida -->
+            <div class="step-container active" id="step-1">
+                <div class="welcome-animation">
+                    <div class="welcome-icon">🏪</div>
+                    <h2>¡Bienvenido!</h2>
+                    <p>Vamos a configurar tu sistema de punto de venta. Solo tomará unos minutos.</p>
+                </div>
+            </div>
+
+            <!-- PASO 2: Datos de Empresa -->
+            <div class="step-container" id="step-2">
+                <h3 class="step-title"><span class="icon">🏢</span> Datos de tu Empresa</h3>
+                <p class="step-description">Esta información aparecerá en tus tickets y reportes</p>
+
+                <div class="form-group">
+                    <label>Nombre del Negocio *</label>
+                    <input type="text" id="companyName" placeholder="Ej: Abarrotes Don José">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="companyPhone" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label>RFC / ID Fiscal</label>
+                        <input type="text" id="companyRfc" placeholder="XAXX010101000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" id="companyAddress" placeholder="Calle, Número, Colonia">
+                </div>
+
+                <div class="form-group">
+                    <label>Logo (opcional)</label>
+                    <div class="logo-upload" onclick="document.getElementById('logoInput').click()">
+                        <div class="logo-preview" id="logoPreview">
+                            <span class="placeholder">🖼️</span>
+                        </div>
+                        <div class="logo-info">
+                            <h4>Subir logo</h4>
+                            <p>PNG, JPG o SVG. Tamaño recomendado: 200x200px</p>
+                        </div>
+                    </div>
+                    <input type="file" id="logoInput" accept="image/*" onchange="previewLogo(this)">
+                </div>
+            </div>
+
+            <!-- PASO 3: Configuración Regional -->
+            <div class="step-container" id="step-3">
+                <h3 class="step-title"><span class="icon">🌎</span> Configuración Regional</h3>
+                <p class="step-description">Define moneda, impuestos y formato de tu región</p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Moneda</label>
+                        <select id="currency" onchange="updateCurrencyPreview()">
+                            <option value="MXN" data-symbol="$">🇲🇽 Peso Mexicano (MXN)</option>
+                            <option value="USD" data-symbol="$">🇺🇸 Dólar (USD)</option>
+                            <option value="EUR" data-symbol="€">🇪🇺 Euro (EUR)</option>
+                            <option value="COP" data-symbol="$">🇨🇴 Peso Colombiano (COP)</option>
+                            <option value="ARS" data-symbol="$">🇦🇷 Peso Argentino (ARS)</option>
+                            <option value="CLP" data-symbol="$">🇨🇱 Peso Chileno (CLP)</option>
+                            <option value="PEN" data-symbol="S/">🇵🇪 Sol Peruano (PEN)</option>
+                            <option value="GTQ" data-symbol="Q">🇬🇹 Quetzal (GTQ)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Símbolo de Moneda</label>
+                        <input type="text" id="currencySymbol" value="$" maxlength="3">
+                    </div>
+                </div>
+
+                <div class="currency-preview">
+                    <span>Vista previa:</span>
+                    <span class="currency-example" id="currencyExample">$1,234.50</span>
+                </div>
+
+                <div class="form-row" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label>Impuesto (IVA/IGV) %</label>
+                        <input type="number" id="taxRate" value="16" min="0" max="30">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del Impuesto</label>
+                        <input type="text" id="taxName" value="IVA" placeholder="IVA, IGV, etc.">
+                    </div>
+                </div>
+
+                <div class="toggle-group">
+                    <div class="toggle-info">
+                        <h4>Impuesto incluido en precio</h4>
+                        <p>Si está activo, los precios ya incluyen impuesto</p>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="taxIncluded" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- PASO 4: Módulos -->
+            <div class="step-container" id="step-4">
+                <h3 class="step-title"><span class="icon">🧩</span> Selecciona tus Módulos</h3>
+                <p class="step-description">Elige las funcionalidades que necesitas. Puedes cambiar esto después.</p>
+
+                <div class="modules-grid" id="modulesGrid">
+                    <!-- Se generan dinámicamente -->
+                </div>
+            </div>
+
+            <!-- PASO 5: Modo de Red -->
+            <div class="step-container" id="step-5">
+                <h3 class="step-title"><span class="icon">🌐</span> Modo de Operación</h3>
+                <p class="step-description">¿Cómo usarás el sistema?</p>
+
+                <div class="network-modes">
+                    <div class="network-card selected" data-mode="standalone" onclick="selectNetworkMode('standalone')">
+                        <div class="icon">💻</div>
+                        <h4>Una sola caja</h4>
+                        <p>Sistema independiente en una computadora</p>
+                    </div>
+                    <div class="network-card" data-mode="server" onclick="selectNetworkMode('server')">
+                        <div class="icon">🖥️</div>
+                        <h4>Servidor</h4>
+                        <p>Esta PC será el servidor central</p>
+                    </div>
+                    <div class="network-card" data-mode="client" onclick="selectNetworkMode('client')">
+                        <div class="icon">📱</div>
+                        <h4>Cliente</h4>
+                        <p>Conectar a un servidor existente</p>
+                    </div>
+                </div>
+
+                <div class="server-config" id="clientConfig">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>IP del Servidor</label>
+                            <input type="text" id="serverIp" placeholder="192.168.1.100">
+                        </div>
+                        <div class="form-group">
+                            <label>Puerto</label>
+                            <input type="number" id="serverPort" value="5000">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre de esta Caja</label>
+                        <input type="text" id="stationName" placeholder="CAJA-1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PASO 6: Resumen Final -->
+            <div class="step-container" id="step-6">
+                <h3 class="step-title"><span class="icon">✅</span> ¡Todo Listo!</h3>
+                <p class="step-description">Revisa tu configuración antes de comenzar</p>
+
+                <div class="summary-grid" id="summaryGrid">
+                    <!-- Se genera dinámicamente -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer con botones -->
+        <div class="wizard-footer">
+            <button class="btn btn-secondary" id="btnPrev" onclick="prevStep()" style="visibility: hidden;">
+                ← Anterior
+            </button>
+            <button class="btn btn-primary" id="btnNext" onclick="nextStep()">
+                Comenzar →
+            </button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/eel.js"></script>
+    <script>
+        let currentStep = 1;
+        const totalSteps = 6;
+        let selectedModules = {};
+        let networkMode = 'standalone';
+        let logoBase64 = '';
+
+        // Módulos disponibles
+        const availableModules = {
+            inventory: { name: 'Inventario', icon: '📦', desc: 'Gestión de productos y stock', required: true },
+            pos: { name: 'Punto de Venta', icon: '💰', desc: 'Caja registradora y ventas', required: false },
+            customers: { name: 'Clientes', icon: '👥', desc: 'Gestión de clientes y créditos', required: false },
+            suppliers: { name: 'Proveedores', icon: '🚚', desc: 'Compras y proveedores', required: false },
+            reports: { name: 'Reportes', icon: '📊', desc: 'Estadísticas y reportes', required: false },
+            users: { name: 'Usuarios', icon: '👤', desc: 'Multi-usuario y permisos', required: false },
+            multicash: { name: 'Multicaja', icon: '🏪', desc: 'Múltiples cajas en red', required: false }
+        };
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            initModulesGrid();
+            updateCurrencyPreview();
+        });
+
+        function initModulesGrid() {
+            const grid = document.getElementById('modulesGrid');
+            grid.innerHTML = '';
+
+            for (const [key, module] of Object.entries(availableModules)) {
+                selectedModules[key] = module.required || ['pos', 'customers', 'suppliers', 'reports'].includes(key);
+                
+                const card = document.createElement('div');
+                card.className = `module-card ${selectedModules[key] ? 'selected' : ''} ${module.required ? 'required' : ''}`;
+                card.dataset.module = key;
+                
+                if (!module.required) {
+                    card.onclick = () => toggleModule(key);
+                }
+
+                card.innerHTML = `
+                    ${module.required ? '<span class="required-badge">OBLIGATORIO</span>' : ''}
+                    <div class="icon">${module.icon}</div>
+                    <h4>${module.name}</h4>
+                    <p>${module.desc}</p>
+                    <div class="check"></div>
+                `;
+                
+                grid.appendChild(card);
+            }
+        }
+
+        function toggleModule(key) {
+            selectedModules[key] = !selectedModules[key];
+            const card = document.querySelector(`[data-module="${key}"]`);
+            card.classList.toggle('selected', selectedModules[key]);
+        }
+
+        function selectNetworkMode(mode) {
+            networkMode = mode;
+            document.querySelectorAll('.network-card').forEach(card => {
+                card.classList.toggle('selected', card.dataset.mode === mode);
+            });
+            
+            const clientConfig = document.getElementById('clientConfig');
+            clientConfig.classList.toggle('visible', mode === 'client');
+        }
+
+        function updateCurrencyPreview() {
+            const symbol = document.getElementById('currencySymbol').value || '$';
+            document.getElementById('currencyExample').textContent = `${symbol}1,234.50`;
+        }
+
+        function previewLogo(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    logoBase64 = e.target.result;
+                    document.getElementById('logoPreview').innerHTML = `<img src="${logoBase64}" alt="Logo">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function updateProgress() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const dot = document.getElementById(`step-dot-${i}`);
+                const line = document.getElementById(`line-${i}`);
+                
+                if (i < currentStep) {
+                    dot.classList.add('completed');
+                    dot.classList.remove('active');
+                    dot.innerHTML = '✓';
+                    if (line) line.classList.add('completed');
+                } else if (i === currentStep) {
+                    dot.classList.add('active');
+                    dot.classList.remove('completed');
+                    dot.innerHTML = i;
+                } else {
+                    dot.classList.remove('active', 'completed');
+                    dot.innerHTML = i;
+                    if (line) line.classList.remove('completed');
+                }
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step-container').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            // Actualizar botones
+            const btnPrev = document.getElementById('btnPrev');
+            const btnNext = document.getElementById('btnNext');
+            
+            btnPrev.style.visibility = step > 1 ? 'visible' : 'hidden';
+            
+            if (step === 1) {
+                btnNext.innerHTML = 'Comenzar →';
+            } else if (step === totalSteps) {
+                btnNext.innerHTML = '🚀 Iniciar Sistema';
+                btnNext.className = 'btn btn-success';
+                generateSummary();
+            } else {
+                btnNext.innerHTML = 'Siguiente →';
+                btnNext.className = 'btn btn-primary';
+            }
+            
+            updateProgress();
+        }
+
+        function nextStep() {
+            if (currentStep === totalSteps) {
+                saveAndStart();
+                return;
+            }
+            
+            // Validaciones
+            if (currentStep === 2) {
+                const name = document.getElementById('companyName').value.trim();
+                if (!name) {
+                    alert('Por favor ingresa el nombre de tu negocio');
+                    return;
+                }
+            }
+            
+            currentStep++;
+            showStep(currentStep);
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function generateSummary() {
+            const grid = document.getElementById('summaryGrid');
+            const companyName = document.getElementById('companyName').value || 'Sin especificar';
+            const currency = document.getElementById('currency').value;
+            const symbol = document.getElementById('currencySymbol').value;
+            const taxRate = document.getElementById('taxRate').value;
+            
+            const enabledModules = Object.entries(selectedModules)
+                .filter(([k, v]) => v)
+                .map(([k]) => availableModules[k].name);
+            
+            const modeNames = {
+                standalone: 'Una sola caja',
+                server: 'Servidor',
+                client: 'Cliente'
+            };
+
+            grid.innerHTML = `
+                <div class="summary-item">
+                    <span class="label">Empresa</span>
+                    <span class="value">${companyName}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Moneda</span>
+                    <span class="value">${symbol} (${currency})</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Impuesto</span>
+                    <span class="value">${taxRate}%</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Modo</span>
+                    <span class="value">${modeNames[networkMode]}</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">Módulos</span>
+                    <div class="modules-summary">
+                        ${enabledModules.map(m => `<span class="module-tag">${m}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function saveAndStart() {
+            const config = {
+                company: {
+                    name: document.getElementById('companyName').value,
+                    phone: document.getElementById('companyPhone').value,
+                    address: document.getElementById('companyAddress').value,
+                    rfc: document.getElementById('companyRfc').value,
+                    logo_path: logoBase64
+                },
+                regional: {
+                    currency: document.getElementById('currency').value,
+                    currency_symbol: document.getElementById('currencySymbol').value
+                },
+                taxes: {
+                    enabled: true,
+                    default_rate: parseFloat(document.getElementById('taxRate').value),
+                    name: document.getElementById('taxName').value,
+                    included_in_price: document.getElementById('taxIncluded').checked
+                },
+                modules: selectedModules,
+                network: {
+                    mode: networkMode,
+                    server_ip: document.getElementById('serverIp')?.value || '',
+                    server_port: parseInt(document.getElementById('serverPort')?.value || 5000),
+                    station_name: document.getElementById('stationName')?.value || 'CAJA-1'
+                }
+            };
+
+            try {
+                // Guardar configuración
+                await eel.save_setup_config(config)();
+                
+                // Redirigir a la app principal
+                window.location.href = 'index-tabs.html';
+            } catch (error) {
+                console.error('Error guardando configuración:', error);
+                // Aún así redirigir
+                window.location.href = 'index-tabs.html';
+            }
+        }
+    </script>
+</body>
+</html>

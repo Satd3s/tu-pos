@@ -1,0 +1,135 @@
+<Window x:Class="TuPos.App.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TuPos.App.ViewModels"
+        xmlns:v="clr-namespace:TuPos.App.Views"
+        mc:Ignorable="d"
+        Title="Tu POS - Punto de Venta" 
+        Height="768" Width="1024"
+        WindowState="Maximized"
+        Style="{StaticResource DarkWindowStyle}"
+        Closing="Window_Closing"
+        Background="#0f172a">
+
+    <Window.Resources>
+        <!-- Map ViewModels to their respective UserControls dynamically -->
+        <DataTemplate DataType="{x:Type vm:POSViewModel}">
+            <v:POSView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:InventoryViewModel}">
+            <v:InventoryView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+            <v:CustomersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SuppliersViewModel}">
+            <v:SuppliersView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ReportsViewModel}">
+            <v:ReportsView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+            <v:SettingsView/>
+        </DataTemplate>
+
+        <!-- Dynamic Navigation Button Style -->
+        <Style x:Key="SidebarButton" TargetType="RadioButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource BrushTextSec}"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="20,0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="3,0,0,0"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource BrushTextMain}"/>
+                                <Setter TargetName="Border" Property="Background" Value="#1e293b"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter TargetName="Border" Property="Background" Value="#1e293b"/>
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource BrushAccent}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Sidebar Navigation -->
+        <Border Grid.Column="0" Background="#0b0f19" BorderBrush="{StaticResource BrushBorder}" BorderThickness="0,0,1,0">
+            <Grid Margin="0,20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Sidebar Header: Branding & Cashier Info -->
+                <StackPanel Grid.Row="0" Margin="20,0,20,30">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                        <TextBlock Text="🏪" FontSize="28" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                        <TextBlock Text="Tu POS" FontSize="22" FontWeight="Bold" Foreground="White" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    
+                    <Border Background="#1e293b" CornerRadius="8" Padding="12">
+                        <StackPanel>
+                            <TextBlock Text="{Binding CashierName}" FontWeight="Bold" FontSize="14" Foreground="White"/>
+                            <TextBlock Text="{Binding CashierRole}" FontSize="12" Foreground="{StaticResource BrushTextSec}" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Sidebar Navigation Menu -->
+                <StackPanel Grid.Row="1">
+                    <RadioButton Content="💰   Punto de Venta" Style="{StaticResource SidebarButton}" 
+                                 IsChecked="True" Command="{Binding ShowPosCommand}"/>
+                    <RadioButton Content="📦   Inventario" Style="{StaticResource SidebarButton}" 
+                                 Command="{Binding ShowInventoryCommand}"/>
+                    <RadioButton Content="👥   Clientes (Crédito)" Style="{StaticResource SidebarButton}" 
+                                 Command="{Binding ShowCustomersCommand}"/>
+                    <RadioButton Content="🚛   Proveedores" Style="{StaticResource SidebarButton}" 
+                                 Command="{Binding ShowSuppliersCommand}"/>
+                    <RadioButton Content="📊   Reportes" Style="{StaticResource SidebarButton}" 
+                                 Command="{Binding ShowReportsCommand}"/>
+                    <RadioButton Content="⚙️   Configuración" Style="{StaticResource SidebarButton}" 
+                                 Command="{Binding ShowSettingsCommand}"/>
+                </StackPanel>
+
+                <!-- Sidebar Footer: Exit -->
+                <StackPanel Grid.Row="2" Margin="20,0">
+                    <Button Content="Cerrar Sesión" Style="{StaticResource DangerButton}" Height="40" Click="BtnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Right Content Panel -->
+        <Border Grid.Column="1" Background="{StaticResource BrushBgDeep}">
+            <ContentControl Content="{Binding CurrentView}" Margin="25"/>
+        </Border>
+    </Grid>
+</Window>

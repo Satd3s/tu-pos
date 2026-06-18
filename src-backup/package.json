@@ -1,0 +1,8 @@
+{
+  "name": "sistema-inventario-refaccionaria",
+  "version": "1.0.0",
+  "description": "Sistema completo de gestión de inventario para refaccionarias",
+  "main": "main.js",
+  "author": "Tu Nombre",
+  "license": "MIT"
+}

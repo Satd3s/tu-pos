@@ -1,0 +1,73 @@
+<UserControl x:Class="TuPos.App.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Configuración del Sistema" FontSize="22" FontWeight="Bold" Foreground="White" Margin="0,0,0,30"/>
+
+        <!-- Settings Content Card -->
+        <Border Grid.Row="1" Background="{StaticResource BrushBgCard}" CornerRadius="12" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1" Padding="25" VerticalAlignment="Top">
+            <StackPanel>
+                
+                <!-- Section 1: Mobile Scanner -->
+                <TextBlock Text="📱 Servidor de Escáner Móvil" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                <TextBlock Text="Permite dar de alta y escanear códigos de barras directamente desde la cámara de tu teléfono móvil en la red local local." 
+                           TextWrapping="Wrap" FontSize="14" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,20"/>
+
+                <Border Background="#0f172a" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="URL del Servidor Móvil" FontSize="12" Foreground="{StaticResource BrushTextSec}"/>
+                            <TextBox Text="{Binding ScannerUrl, Mode=OneWay}" FontSize="16" FontWeight="Bold" Margin="0,5,0,10" 
+                                     Background="Transparent" BorderThickness="0" Foreground="#4ade80" IsReadOnly="True"/>
+                            
+                            <TextBlock Text="{Binding ScannerStatus}" FontSize="13" Foreground="{StaticResource BrushTextSec}" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <Button Grid.Column="1" Height="45" Width="140" Margin="20,0,0,0" VerticalAlignment="Center"
+                                Command="{Binding ToggleScannerCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsScannerRunning}" Value="True">
+                                            <Setter Property="Content" Value="Detener"/>
+                                            <Setter Property="Background" Value="{StaticResource BrushDanger}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BrushDanger}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsScannerRunning}" Value="False">
+                                            <Setter Property="Content" Value="Activar"/>
+                                            <Setter Property="Background" Value="{StaticResource BrushAccent}"/>
+                                            <Setter Property="BorderBrush" Value="{StaticResource BrushAccent}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Section 2: General Info -->
+                <Separator Background="{StaticResource BrushBorder}" Margin="0,15,0,25"/>
+
+                <TextBlock Text="⚙️ Información de Punto de Venta" FontSize="18" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                <TextBlock Text="Este sistema está enlazado directamente a la base de datos de 'Tu POS' en modo WAL seguro de alto rendimiento." 
+                           TextWrapping="Wrap" FontSize="14" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,20"/>
+                
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

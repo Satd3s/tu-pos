@@ -1,0 +1,1499 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventario - Refaccionaria Smip</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estilos-adicionales.css">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="logo-container">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <h1>Refaccionaria Smip</h1>
+                </div>
+                <p class="login-subtitle">Sistema de Control de Inventario</p>
+            </div>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" class="form-input" placeholder="Ingrese su usuario" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" class="form-input" placeholder="Ingrese su contraseña"
+                        required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="app-container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container-small">
+                    <svg class="logo-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                        <circle cx="7" cy="17" r="2" />
+                        <circle cx="17" cy="17" r="2" />
+                    </svg>
+                    <span>Refaccionaria Smip</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="products">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                    </svg>
+                    <span>Productos</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="pos">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span>Punto de Venta</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="suppliers">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    <span>Proveedores</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="movements">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span>Movimientos</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="reports">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <span>Reportes</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="users" id="usersNavItem">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span>Usuarios</span>
+                </a>
+
+                <a href="#" class="nav-item" data-view="settings">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Ajustes</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userInitials">AD</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userNameDisplay">Admin</p>
+                        <p class="user-role" id="userRoleDisplay">Administrador</p>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutButtonFinal" onclick="logout()" title="Cerrar Sesión">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                </button>
+            </div>
+            <div class="sidebar-credits" onclick="openAboutModal()">
+                <span>v1.0 • Créditos</span>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboardView" class="view active-view">
+                <div class="content-header">
+                    <h2>Dashboard</h2>
+                    <p class="subtitle">Resumen general del inventario</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card stat-primary clickable" onclick="showDashboardDetails('products')">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Total Productos</p>
+                            <p class="stat-value" id="totalProducts">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-success clickable" onclick="showDashboardDetails('value')">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Valor Total Inventario</p>
+                            <p class="stat-value" id="totalValue">$0.00</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-warning clickable" onclick="showDashboardDetails('lowStock')">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Stock Bajo</p>
+                            <p class="stat-value" id="lowStock">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-info clickable" onclick="showDashboardDetails('movements')">
+                        <div class="stat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                            </svg>
+                        </div>
+                        <div class="stat-content">
+                            <p class="stat-label">Movimientos Hoy</p>
+                            <p class="stat-value" id="todayMovements">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Últimos Movimientos</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="recentMovements" class="movements-list">
+                                <p class="empty-state">No hay movimientos recientes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Productos con Stock Bajo</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="lowStockProducts" class="products-list">
+                                <p class="empty-state">No hay productos con stock bajo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products View -->
+            <div id="productsView" class="view">
+                <div class="content-header">
+                    <div>
+                        <h2>Gestión de Productos</h2>
+                        <p class="subtitle">Administra tu catálogo de productos</p>
+                    </div>
+                    <button class="btn btn-primary" id="addProductBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Agregar Producto
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <input type="text" id="searchProducts" class="search-input" placeholder="Buscar productos...">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>No. Pieza</th>
+                                        <th>Nombre</th>
+                                        <th>Stock</th>
+                                        <th>Precio Venta</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productsTableBody">
+                                    <tr>
+                                        <td colspan="6" class="empty-state">No hay productos registrados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point of Sale View -->
+            <div id="posView" class="view">
+                <div class="pos-main-container">
+                    <!-- Barra superior simplificada -->
+                    <div class="pos-top-bar">
+                        <div class="pos-header-right">
+                            <div class="pos-datetime" id="posDateTime"></div>
+                            <div class="pos-shift-badge" id="posShiftBadge">
+                                <span class="pos-shift-dot"></span>
+                                <span>Sin turno</span>
+                            </div>
+                            <button class="pos-menu-btn" onclick="openPOSOptionsModal()" title="Menú (F4)">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            </button>
+                            <button class="pos-close-btn" onclick="exitPOS()" title="Salir">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Contenedor principal -->
+                    <div class="pos-content">
+                        <!-- Buscador de Productos -->
+                        <div class="pos-search-section">
+                            <div class="pos-search-wrapper">
+                                <svg class="pos-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                                <input type="text" id="posProductSearch" class="pos-search-input"
+                                    placeholder="Escanea código o busca producto... (F2 para enfocar)"
+                                    autocomplete="off">
+                            </div>
+                            <div id="posSearchResults" class="pos-search-results"></div>
+                        </div>
+
+                        <!-- Selección de Cliente -->
+                        <div id="posCustomerDisplay" style="margin-bottom: 10px;">
+                            <button onclick="openPOSCustomerModal()" class="btn btn-ghost"
+                                style="width: 100%; justify-content: center; gap: 8px;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="18" height="18">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                </svg>
+                                Asignar Cliente (opcional)
+                            </button>
+                        </div>
+
+                        <!-- Carrito de Compras -->
+                        <div class="pos-cart-full">
+                            <div class="pos-cart-header">
+                                <h3>Productos en Venta</h3>
+                                <span class="pos-cart-count" id="posCartCount">0 productos</span>
+                            </div>
+                            <div class="pos-cart-table-wrapper">
+                                <table class="pos-cart-table" id="posCartTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 80px;">Código</th>
+                                            <th>Producto</th>
+                                            <th style="width: 100px; text-align: center;">Cantidad</th>
+                                            <th style="width: 100px; text-align: right;">Precio</th>
+                                            <th style="width: 110px; text-align: right;">Importe</th>
+                                            <th style="width: 50px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="posCartTableBody">
+                                        <tr class="pos-cart-empty-row">
+                                            <td colspan="6">
+                                                <div class="pos-cart-empty">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="1.5"
+                                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg>
+                                                    <p>Carrito vacío</p>
+                                                    <span>Escanea o busca productos para agregar</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Barra inferior simplificada -->
+                    <div class="pos-bottom-bar">
+                        <div class="pos-shortcuts-mini">
+                            <kbd>F2</kbd><span>Buscar</span>
+                            <kbd>F4</kbd><span>Menú</span>
+                            <kbd>F8</kbd><span>Cobrar</span>
+                        </div>
+                        <div class="pos-checkout-area">
+                            <div class="pos-subtotals-mini">
+                                <span>Sub: <strong id="posSubtotal">$0.00</strong></span>
+                                <span>IVA: <strong id="posIVA">$0.00</strong></span>
+                            </div>
+                            <button class="pos-checkout-btn-large" onclick="openPaymentModal()" id="posCheckoutBtn"
+                                disabled>
+                                <span class="pos-checkout-amount" id="posTotal">$0.00</span>
+                                <span class="pos-checkout-label">COBRAR</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Inicio de Turno -->
+            <div id="posShiftModal" class="modal">
+                <div class="modal-content pos-shift-modal">
+                    <div class="modal-header">
+                        <h3>Iniciar Turno de Caja</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="pos-shift-welcome">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <h4>¡Bienvenido al Punto de Venta!</h4>
+                            <p>Ingresa el fondo inicial de caja para comenzar tu turno</p>
+                        </div>
+                        <div class="pos-shift-input">
+                            <label>Fondo Inicial de Caja</label>
+                            <div class="pos-shift-amount-input">
+                                <span class="pos-currency-symbol">$</span>
+                                <input type="number" id="posShiftFund" placeholder="0.00" min="0" step="0.01">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-ghost" onclick="cancelPOSShift()">Cancelar</button>
+                        <button class="btn btn-primary" onclick="startPOSShift()">Iniciar Turno</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Opciones POS -->
+            <div id="posOptionsModal" class="modal">
+                <div class="modal-content pos-options-modal">
+                    <div class="modal-header">
+                        <h3>Opciones del Punto de Venta</h3>
+                        <button class="modal-close" onclick="closeModal('posOptionsModal')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Acciones Rápidas -->
+                        <div class="pos-options-section">
+                            <h4>Acciones Rápidas</h4>
+                            <div class="pos-options-grid">
+                                <button class="pos-option-btn" onclick="reprintLastTicket()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                    </svg>
+                                    <span>Reimprimir Último Ticket</span>
+                                </button>
+                                <button class="pos-option-btn" onclick="startNewSale()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4v16m8-8H4" />
+                                    </svg>
+                                    <span>Nueva Venta</span>
+                                </button>
+                                <button class="pos-option-btn"
+                                    onclick="openPOSHistory(); closeModal('posOptionsModal');">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                    </svg>
+                                    <span>Ver Historial</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Resumen del Turno -->
+                        <div class="pos-options-section">
+                            <h4>Resumen del Turno</h4>
+                            <div class="pos-shift-summary">
+                                <div class="pos-shift-summary-row">
+                                    <span>Ventas realizadas:</span>
+                                    <span id="posShiftSalesCount">0</span>
+                                </div>
+                                <div class="pos-shift-summary-row">
+                                    <span>Total vendido:</span>
+                                    <span id="posShiftSalesTotal">$0.00</span>
+                                </div>
+                                <div class="pos-shift-summary-row">
+                                    <span>Fondo inicial:</span>
+                                    <span id="posShiftFundDisplay">$0.00</span>
+                                </div>
+                                <div class="pos-shift-summary-row total">
+                                    <span>Efectivo estimado:</span>
+                                    <span id="posShiftCashTotal">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opciones de Supervisor -->
+                        <div class="pos-options-section supervisor">
+                            <h4>Opciones de Supervisor</h4>
+                            <div class="pos-options-grid">
+                                <button class="pos-option-btn warning" onclick="cancelLastSale()">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                                    </svg>
+                                    <span>Anular Última Venta</span>
+                                </button>
+                                <button class="pos-option-btn"
+                                    onclick="openCashCutModal(); closeModal('posOptionsModal');">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                    </svg>
+                                    <span>Corte de Caja</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de Pago POS -->
+            <div id="posPaymentModal" class="modal">
+                <div class="modal-content pos-payment-modal">
+                    <div class="modal-header">
+                        <h3>Procesar Pago</h3>
+                        <button class="modal-close" onclick="closeModal('posPaymentModal')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Total a Pagar -->
+                        <div class="pos-payment-total-display">
+                            <span class="pos-payment-label">Total a Pagar</span>
+                            <span class="pos-payment-amount" id="posPaymentTotal">$0.00</span>
+                        </div>
+
+                        <!-- Método de Pago -->
+                        <div class="pos-payment-section">
+                            <h4>Selecciona el Método de Pago</h4>
+                            <div class="pos-payment-methods">
+                                <button type="button" class="pos-payment-btn active" data-method="cash"
+                                    onclick="selectPaymentMethodModal('cash', this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Efectivo
+                                </button>
+                                <button type="button" class="pos-payment-btn" data-method="card"
+                                    onclick="selectPaymentMethodModal('card', this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                    </svg>
+                                    Tarjeta
+                                </button>
+                                <button type="button" class="pos-payment-btn" data-method="transfer"
+                                    onclick="selectPaymentMethodModal('transfer', this)">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                    </svg>
+                                    Transferencia
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sección de Efectivo -->
+                        <div class="pos-cash-section-modal" id="posCashSectionModal">
+                            <div class="pos-cash-input-modal">
+                                <label>Monto Recibido</label>
+                                <input type="number" id="posCashReceivedModal" placeholder="0.00"
+                                    oninput="calculateChangeModal()" autofocus>
+                            </div>
+                            <div class="pos-change-modal">
+                                <span>Cambio a entregar:</span>
+                                <span id="posChangeModal" class="pos-change-amount-modal">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Mensaje para Tarjeta/Transferencia -->
+                        <div class="pos-card-section-modal" id="posCardSectionModal" style="display: none;">
+                            <div class="pos-card-message">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p>El pago será procesado por el monto total mostrado arriba.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer pos-payment-footer">
+                        <button class="btn btn-ghost" onclick="closeModal('posPaymentModal')">Cancelar</button>
+                        <button class="btn pos-confirm-payment-btn" id="posConfirmPaymentBtn"
+                            onclick="confirmPOSPayment()">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            Confirmar Pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suppliers View -->
+            <div id="suppliersView" class="view">
+                <div class="content-header">
+                    <div>
+                        <h2>Gestión de Proveedores</h2>
+                        <p class="subtitle">Administra tu catálogo de proveedores</p>
+                    </div>
+                    <button class="btn btn-primary" id="addSupplierBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Agregar Proveedor
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <input type="text" id="searchSuppliers" class="search-input"
+                            placeholder="Buscar proveedores...">
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nombre</th>
+                                        <th>Contacto</th>
+                                        <th>Teléfono</th>
+                                        <th>Email</th>
+                                        <th>Precios</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="suppliersTableBody">
+                                    <tr>
+                                        <td colspan="7" class="empty-state">No hay proveedores registrados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movements View -->
+            <div id="movementsView" class="view">
+                <div class="content-header">
+                    <div>
+                        <h2>Movimientos de Inventario</h2>
+                        <p class="subtitle">Registra entradas y salidas de inventario</p>
+                    </div>
+                    <button class="btn btn-primary" id="addMovementBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Nuevo Movimiento
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="filters-row">
+                            <input type="text" id="searchMovements" class="search-input"
+                                placeholder="Buscar movimientos...">
+                            <select id="filterMovementType" class="filter-select">
+                                <option value="">Todos los movimientos</option>
+                                <option value="entrada">Entradas</option>
+                                <option value="salida">Salidas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Fecha</th>
+                                        <th>Tipo</th>
+                                        <th>Producto</th>
+                                        <th>Cantidad</th>
+                                        <th>Usuario</th>
+                                        <th>Notas</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="movementsTableBody">
+                                    <tr>
+                                        <td colspan="6" class="empty-state">No hay movimientos registrados</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports View -->
+            <div id="reportsView" class="view">
+                <div class="content-header">
+                    <h2>Reportes</h2>
+                    <p class="subtitle">Análisis detallado del inventario</p>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporte de Inventario</h3>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-full" id="generateInventoryReport">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Generar Reporte Completo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporte de Movimientos</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Fecha Inicio</label>
+                                <input type="date" id="reportStartDate" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Fecha Fin</label>
+                                <input type="date" id="reportEndDate" class="form-input">
+                            </div>
+                            <button class="btn btn-secondary btn-full" id="generateMovementsReport">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Generar Reporte de Movimientos
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporte de Stock Bajo</h3>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-full" id="generateLowStockReport">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Generar Reporte Stock Bajo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Reporte de Utilidades</h3>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-full" id="generateProfitReport">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Generar Reporte de Utilidades
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Comparativa de Proveedores</h3>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-full" id="generateSupplierComparisonReport">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                                Generar Comparativa de Proveedores
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" id="reportResultsCard" style="display: none;">
+                    <div class="card-header">
+                        <h3>Resultados del Reporte</h3>
+                        <button class="btn btn-ghost btn-sm" id="printReport">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                            Imprimir
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="reportResults"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users View (Admin Only) -->
+            <div id="usersView" class="view">
+                <div class="content-header">
+                    <div>
+                        <h2>Gestión de Usuarios</h2>
+                        <p class="subtitle">Administra usuarios y permisos</p>
+                    </div>
+                    <button class="btn btn-primary" id="addUserBtn">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                        </svg>
+                        Agregar Usuario
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settingsView" class="view">
+                <div class="content-header">
+                    <div>
+                        <h2>Ajustes</h2>
+                        <p class="subtitle">Personaliza la aplicación según tus necesidades</p>
+                    </div>
+                </div>
+
+                <div class="settings-container">
+                    <!-- Identidad de la Empresa -->
+                    <div class="settings-section collapsible">
+                        <div class="settings-section-header" onclick="toggleSettingsSection(this)">
+                            <div class="settings-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                </svg>
+                            </div>
+                            <div class="settings-header-text">
+                                <h3>Identidad de la Empresa</h3>
+                                <p>Configura el nombre, logo y datos de contacto</p>
+                            </div>
+                            <div class="settings-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-section-body">
+                            <div class="form-group">
+                                <label for="companyName">Nombre de la Empresa</label>
+                                <input type="text" id="companyName" class="form-input"
+                                    placeholder="Ej: Refaccionaria Smip">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="companyPhone">Teléfono</label>
+                                    <input type="tel" id="companyPhone" class="form-input"
+                                        placeholder="Ej: (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="companyEmail">Email</label>
+                                    <input type="email" id="companyEmail" class="form-input"
+                                        placeholder="contacto@empresa.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="companyAddress">Dirección</label>
+                                <textarea id="companyAddress" class="form-input" rows="2"
+                                    placeholder="Dirección completa"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apariencia -->
+                    <div class="settings-section collapsible">
+                        <div class="settings-section-header" onclick="toggleSettingsSection(this)">
+                            <div class="settings-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                                </svg>
+                            </div>
+                            <div class="settings-header-text">
+                                <h3>Apariencia</h3>
+                                <p>Personaliza los colores y el tema visual</p>
+                            </div>
+                            <div class="settings-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-section-body">
+                            <div class="form-group">
+                                <label for="primaryColor">Color Principal</label>
+                                <div class="color-picker-wrapper">
+                                    <input type="color" id="primaryColor" value="#3b82f6"
+                                        onchange="updateColorPreview(this.value)">
+                                    <span class="color-value" id="primaryColorValue">#3b82f6</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Tema</label>
+                                <div class="theme-selector">
+                                    <button type="button" class="theme-option active" data-theme="dark"
+                                        onclick="selectTheme('dark', this)">
+                                        <span class="theme-preview dark"></span>
+                                        Oscuro
+                                    </button>
+                                    <button type="button" class="theme-option" data-theme="light"
+                                        onclick="selectTheme('light', this)">
+                                        <span class="theme-preview light"></span>
+                                        Claro
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-top: 16px;">
+                                <button type="button" class="btn btn-primary" onclick="applyAppearanceSettings()">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    Aplicar Cambios de Apariencia
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configuración del Inventario -->
+                    <div class="settings-section collapsible">
+                        <div class="settings-section-header" onclick="toggleSettingsSection(this)">
+                            <div class="settings-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                                </svg>
+                            </div>
+                            <div class="settings-header-text">
+                                <h3>Configuración del Inventario</h3>
+                                <p>Ajusta los parámetros de stock y moneda</p>
+                            </div>
+                            <div class="settings-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-section-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="lowStockThreshold">Umbral de Stock Bajo</label>
+                                    <input type="number" id="lowStockThreshold" class="form-input" min="1" value="5">
+                                    <small class="form-help">Alertar cuando el stock sea menor o igual a este
+                                        valor</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="currencySymbol">Moneda</label>
+                                    <select id="currencySymbol" class="form-input">
+                                        <option value="MXN">MXN - Peso Mexicano</option>
+                                        <option value="USD">USD - Dólar Americano</option>
+                                        <option value="EUR">EUR - Euro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="minProfitMargin">Margen de Utilidad Mínimo (%)</label>
+                                <input type="number" id="minProfitMargin" class="form-input" min="0" max="100"
+                                    value="15">
+                                <small class="form-help">Alertar cuando un producto tenga menos de este porcentaje de
+                                    ganancia</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Datos del Sistema -->
+                    <div class="settings-section collapsible">
+                        <div class="settings-section-header" onclick="toggleSettingsSection(this)">
+                            <div class="settings-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                                </svg>
+                            </div>
+                            <div class="settings-header-text">
+                                <h3>Datos del Sistema</h3>
+                                <p>Respaldo, restauración y mantenimiento</p>
+                            </div>
+                            <div class="settings-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-section-body">
+                            <div class="data-actions">
+                                <button class="btn btn-secondary" onclick="exportSystemData()">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                    </svg>
+                                    Exportar Datos
+                                </button>
+                                <label class="btn btn-secondary">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                    </svg>
+                                    Importar Datos
+                                    <input type="file" id="importDataFile" accept=".json" style="display: none;"
+                                        onchange="importSystemData(event)">
+                                </label>
+                                <button class="btn btn-danger-outline" onclick="factoryReset()">
+                                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    </svg>
+                                    Restablecer Sistema
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Información -->
+                    <div class="settings-section collapsible">
+                        <div class="settings-section-header" onclick="toggleSettingsSection(this)">
+                            <div class="settings-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="settings-header-text">
+                                <h3>Información</h3>
+                                <p>Versión y créditos del sistema</p>
+                            </div>
+                            <div class="settings-chevron">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="settings-section-body">
+                            <div class="system-info">
+                                <div class="info-item">
+                                    <span class="info-label">Versión</span>
+                                    <span class="info-value">1.0.0</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Desarrollador</span>
+                                    <span class="info-value">SATd3S_soft</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Última Actualización</span>
+                                    <span class="info-value">Diciembre 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón Guardar -->
+                    <div class="settings-footer">
+                        <button class="btn btn-primary btn-lg" onclick="saveSettings()">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                            Guardar Cambios
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal: Add/Edit Product -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Agregar Producto</h3>
+                <button class="modal-close" onclick="closeModal('productModal')">&times;</button>
+            </div>
+            <form id="productForm">
+                <div class="modal-body">
+                    <input type="hidden" id="productId">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productCode">Código *</label>
+                            <input type="text" id="productCode" class="form-input" placeholder="Ej: PROD001" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPartNumber">Número de Pieza *</label>
+                            <input type="text" id="productPartNumber" class="form-input" placeholder="Ej: ABC-123-XYZ"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productName">Nombre del Producto *</label>
+                        <input type="text" id="productName" class="form-input" placeholder="Ej: Filtro de aceite"
+                            required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="productStock">Stock *</label>
+                            <input type="number" id="productStock" class="form-input" min="0" placeholder="0" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productPrice">Precio Venta *</label>
+                            <input type="number" id="productPrice" class="form-input" step="0.01" min="0"
+                                placeholder="0.00" required>
+                        </div>
+                    </div>
+
+                    <p class="form-hint">💡 Los precios de compra se gestionan en el módulo de Proveedores</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('productModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add/Edit Supplier -->
+    <div id="supplierModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="supplierModalTitle">Agregar Proveedor</h3>
+                <button class="modal-close" onclick="closeModal('supplierModal')">&times;</button>
+            </div>
+            <form id="supplierForm">
+                <div class="modal-body">
+                    <input type="hidden" id="supplierId">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="supplierCode">Código *</label>
+                            <input type="text" id="supplierCode" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supplierName">Nombre *</label>
+                            <input type="text" id="supplierName" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="supplierContact">Contacto *</label>
+                            <input type="text" id="supplierContact" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="supplierPhone">Teléfono *</label>
+                            <input type="tel" id="supplierPhone" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierEmail">Email *</label>
+                        <input type="email" id="supplierEmail" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierAddress">Dirección</label>
+                        <textarea id="supplierAddress" class="form-input" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('supplierModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Supplier Prices -->
+    <div id="supplierPricesModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="supplierPricesModalTitle">Precios del Proveedor</h3>
+                <button class="modal-close" onclick="closeSupplierPricesModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Buscador -->
+                <div class="search-box">
+                    <input type="text" id="searchSupplierProducts" class="search-input search-input-lg"
+                        placeholder="🔍 Buscar producto por código, número de pieza o nombre..."
+                        oninput="searchProductsForPricing(this.value)" autocomplete="off">
+                </div>
+
+                <!-- Resultados de búsqueda -->
+                <div id="searchResultsSection">
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>No. Pieza</th>
+                                    <th>Nombre</th>
+                                    <th>P. Venta</th>
+                                    <th>P. Compra</th>
+                                    <th>Margen</th>
+                                </tr>
+                            </thead>
+                            <tbody id="searchResultsTableBody">
+                                <tr>
+                                    <td colspan="6" class="empty-state">Escriba para buscar productos...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="closeSupplierPricesModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Add Movement / Purchase -->
+    <div id="movementModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="movementModalTitle">Registrar Movimiento</h3>
+                <button class="modal-close" onclick="closeModal('movementModal')">&times;</button>
+            </div>
+
+            <form id="movementForm">
+                <div class="modal-body">
+                    <!-- Selección de Tipo -->
+                    <div class="form-group">
+                        <label for="movementType">Tipo de Movimiento *</label>
+                        <select id="movementType" class="form-input" required>
+                            <option value="">Seleccione...</option>
+                            <option value="entrada">Entrada / Compra</option>
+                            <option value="salida">Salida / Ajuste</option>
+                        </select>
+                    </div>
+
+                    <!-- ==============================
+                         SECCIÓN DE ENTRADA (COMPRA) 
+                         ============================== -->
+                    <div id="entrySection" style="display: none;">
+                        <div class="grid-2-col mb-2">
+                            <div class="form-group">
+                                <label for="purchaseSupplier">Proveedor *</label>
+                                <select id="purchaseSupplier" class="form-input">
+                                    <option value="">Seleccione proveedor...</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="purchaseInvoice">No. Factura / Nota</label>
+                                <input type="text" id="purchaseInvoice" class="form-input" placeholder="Ej. F-9923">
+                            </div>
+                        </div>
+
+                        <h4 class="section-title">Productos de la Compra</h4>
+
+                        <!-- Buscador para agregar productos a la lista -->
+                        <div class="form-group">
+                            <input type="text" id="purchaseProductSearch" class="search-input"
+                                placeholder="🔍 Buscar producto para agregar a la lista..." autocomplete="off">
+                            <div id="purchaseSearchResults" class="dropdown-results" style="display:none;"></div>
+                        </div>
+
+                        <!-- Tabla de items a recibir -->
+                        <div class="table-container mb-2" style="max-height: 300px; overflow-y: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Stock Actual</th>
+                                        <th width="100">Cantidad</th>
+                                        <th width="120">Costo Unit.</th>
+                                        <th width="120">Subtotal</th>
+                                        <th width="50"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="purchaseItemsTableBody">
+                                    <tr id="emptyPurchaseRow">
+                                        <td colspan="6" class="empty-state">Agregue productos usando el buscador de
+                                            arriba</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr style="font-weight: bold; background: rgba(255,255,255,0.05);">
+                                        <td colspan="4" style="text-align: right;">TOTAL FACTURA:</td>
+                                        <td id="purchaseTotalDisplay">$0.00</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- ==============================
+                         SECCIÓN DE SALIDA (MÚLTIPLE) 
+                         ============================== -->
+                    <div id="exitSection" style="display: none;">
+                        <h4 class="section-title">Productos a Retirar</h4>
+
+                        <!-- Buscador Salida -->
+                        <div class="form-group">
+                            <input type="text" id="exitProductSearch" class="search-input"
+                                placeholder="🔍 Buscar producto para dar salida..." autocomplete="off">
+                            <div id="exitSearchResults" class="dropdown-results" style="display:none;"></div>
+                        </div>
+
+                        <!-- Tabla Salida -->
+                        <div class="table-container mb-2" style="max-height: 300px; overflow-y: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Producto</th>
+                                        <th>Stock Actual</th>
+                                        <th width="150">Cantidad a Retirar</th>
+                                        <th width="50"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="exitItemsTableBody">
+                                    <tr id="emptyExitRow">
+                                        <td colspan="4" class="empty-state">Agregue productos usando el buscador</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Notas Generales -->
+                    <div class="form-group">
+                        <label for="movementNotes">Notas / Comentarios</label>
+                        <textarea id="movementNotes" class="form-input" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('movementModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="saveMovementBtn">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add/Edit User -->
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="userModalTitle">Agregar Usuario</h3>
+                <button class="modal-close" onclick="closeModal('userModal')">&times;</button>
+            </div>
+            <form id="userForm">
+                <div class="modal-body">
+                    <input type="hidden" id="userId">
+
+                    <div class="form-group">
+                        <label for="userUsername">Usuario *</label>
+                        <input type="text" id="userUsername" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userFullName">Nombre Completo *</label>
+                        <input type="text" id="userFullName" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userPassword">Contraseña *</label>
+                        <input type="password" id="userPassword" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userRole">Rol *</label>
+                        <select id="userRole" class="form-input" required>
+                            <option value="usuario">Usuario</option>
+                            <option value="admin">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('userModal')">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Dashboard Details -->
+    <div id="dashboardDetailsModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="dashboardDetailsTitle">Detalles</h3>
+                <button class="modal-close" onclick="closeModal('dashboardDetailsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead id="dashboardDetailsHead">
+                            <!-- Headers dinámicos -->
+                        </thead>
+                        <tbody id="dashboardDetailsBody">
+                            <!-- Contenido dinámico -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                    onclick="closeModal('dashboardDetailsModal')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="suppliers-module.js"></script>
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content about-content">
+            <span class="close-modal" onclick="closeModal('aboutModal')">&times;</span>
+            <div class="about-header">
+                <div class="about-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
+                        <circle cx="7" cy="17" r="2" />
+                        <circle cx="17" cy="17" r="2" />
+                    </svg>
+                </div>
+                <h3>Refaccionaria Smip</h3>
+                <p class="version-tag">Versión 1.0.0</p>
+            </div>
+
+            <div class="about-body">
+                <p class="about-desc">Sistema integral para gestión de inventarios y puntos de venta.</p>
+
+                <div class="developer-card">
+                    <div class="dev-logo-container">
+                        <img src="logo-dev.png" alt="SATd3S_soft" class="dev-logo-img">
+                    </div>
+
+                    <div class="dev-info-compact">
+                        <p class="dev-name-discrete">MARCOS GARCIA</p>
+                        <a href="mailto:markgsat@gmail.com" class="contact-link-discrete">markgsat@gmail.com</a>
+                    </div>
+                </div>
+
+                <p class="copyright">© 2025 Refaccionaria Smip. Todos los derechos reservados.</p>
+            </div>
+
+            <div class="about-footer">
+                <button class="btn-primary" onclick="closeModal('aboutModal')">Cerrar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Logout Confirmation Modal -->
+    <div id="logoutConfirmModal" class="modal">
+        <div class="modal-content logout-confirm-content">
+            <div class="logout-confirm-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+            </div>
+            <h3>¿Cerrar Sesión?</h3>
+            <p>¿Está seguro que desea cerrar su sesión actual?</p>
+            <div class="logout-confirm-buttons">
+                <button class="btn-secondary" onclick="closeModal('logoutConfirmModal')">Cancelar</button>
+                <button class="btn-danger" onclick="confirmLogout()">Cerrar Sesión</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="pos-module.js"></script>
+    <script src="settings-module.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

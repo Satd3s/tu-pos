@@ -1,0 +1,81 @@
+/* ===== ESTILOS PARA CALCULADORA DE UTILIDAD ===== */
+
+/* Display de utilidad en el formulario */
+.profit-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    min-height: 46px;
+}
+
+.profit-display .profit-amount {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.profit-display .profit-percentage {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: #e0e0e0;
+    color: #666;
+}
+
+/* Estados de utilidad */
+.profit-display.profit-high .profit-amount {
+    color: #27ae60;
+}
+
+.profit-display.profit-high .profit-percentage {
+    background: #d5f4e6;
+    color: #27ae60;
+}
+
+.profit-display.profit-medium .profit-amount {
+    color: #f39c12;
+}
+
+.profit-display.profit-medium .profit-percentage {
+    background: #fef5e7;
+    color: #f39c12;
+}
+
+.profit-display.profit-low .profit-amount {
+    color: #e74c3c;
+}
+
+.profit-display.profit-low .profit-percentage {
+    background: #fadbd8;
+    color: #e74c3c;
+}
+
+/* Badge de utilidad en tablas */
+.profit-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.profit-badge.high {
+    background: #d5f4e6;
+    color: #27ae60;
+}
+
+.profit-badge.medium {
+    background: #fef5e7;
+    color: #f39c12;
+}
+
+.profit-badge.low {
+    background: #fadbd8;
+    color: #e74c3c;
+}

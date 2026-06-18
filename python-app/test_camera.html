@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Camera</title>
+    <style>
+        body {
+            background: #1a1a2e;
+            color: white;
+            font-family: sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            max-width: 400px;
+            background: #000;
+            border-radius: 12px;
+        }
+
+        #status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .success {
+            background: #22c55e;
+        }
+
+        .error {
+            background: #ef4444;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Test de Camara</h2>
+    <div id="status">Iniciando...</div>
+    <video id="video" autoplay playsinline muted></video>
+
+    <script>
+        async function init() {
+            const video = document.getElementById('video');
+            const status = document.getElementById('status');
+
+            try {
+                status.textContent = 'Solicitando permiso de camara...';
+
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }
+                });
+
+                status.textContent = 'Stream obtenido, asignando a video...';
+                video.srcObject = stream;
+
+                video.onloadedmetadata = () => {
+                    status.textContent = 'Video cargado! Dimensiones: ' + video.videoWidth + 'x' + video.videoHeight;
+                    status.className = 'success';
+                };
+
+                await video.play();
+                status.textContent = 'Camara funcionando!';
+                status.className = 'success';
+
+            } catch (err) {
+                status.textContent = 'Error: ' + err.name + ' - ' + err.message;
+                status.className = 'error';
+                console.error(err);
+            }
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
+</CodeContent>
+<parameter name="EmptyFile">false

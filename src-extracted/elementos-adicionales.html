@@ -1,0 +1,193 @@
+<!-- ============================================ -->
+<!-- ELEMENTOS ADICIONALES PARA EL SISTEMA -->
+<!-- Estos elementos se deben agregar al index.html -->
+<!-- ============================================ -->
+
+<!-- ========== VISTA DE PROVEEDORES ========== -->
+<!-- Insertar después de productsView y antes de movementsView -->
+<div id="suppliersView" class="view">
+    <div class="content-header">
+        <div>
+            <h2>Gestión de Proveedores</h2>
+            <p class="subtitle">Administra tu catálogo de proveedores</p>
+        </div>
+        <button class="btn btn-primary" id="addSupplierBtn">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Agregar Proveedor
+        </button>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <input type="text" id="searchSuppliers" class="search-input" placeholder="Buscar proveedores...">
+        </div>
+        <div class="card-body">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Contacto</th>
+                            <th>Teléfono</th>
+                            <th>Email</th>
+                            <th>Productos</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="suppliersTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">No hay proveedores registrados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== MODAL DE PROVEEDORES ========== -->
+<!-- Insertar después del modal de usuarios -->
+<div id="supplierModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="supplierModalTitle">Agregar Proveedor</h3>
+            <button class="modal-close" onclick=" closeModal('supplierModal')">&times;</button>
+        </div>
+        <form id="supplierForm">
+            <div class="modal-body">
+                <input type="hidden" id="supplierId">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="supplierCode">Código *</label>
+                        <input type="text" id="supplierCode" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierName">Nombre Comercial *</label>
+                        <input type="text" id="supplierName" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="supplierContact">Persona de Contacto *</label>
+                        <input type="text" id="supplierContact" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierPhone">Teléfono *</label>
+                        <input type="tel" id="supplierPhone" class="form-input" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="supplierEmail">Email *</label>
+                    <input type="email" id="supplierEmail" class="form-input" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="supplierAddress">Dirección</label>
+                    <textarea id="supplierAddress" class="form-input" rows="2"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-ghost" onclick="closeModal('supplierModal')">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--  ========== NUEVOS REPORTES ========== -->
+<!-- Agregar estas dos tarjetas en la sección de reportes (reportsView) -->
+
+<!-- Tarjeta de Reporte de Utilidades -->
+<div class="card">
+    <div class="card-header">
+        <h3>Reporte de Utilidades</h3>
+    </div>
+    <div class="card-body">
+        <p class="mb-2">Análisis completo de costos, precios y utilidades por producto.</p>
+        <button class="btn btn-secondary btn-full" id="generateProfitReport">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Generar Reporte de Utilidades
+        </button>
+    </div>
+</div>
+
+<!-- Tarjeta de Comparativa de Proveedores -->
+<div class="card">
+    <div class="card-header">
+        <h3>Comparativa de Proveedores</h3>
+    </div>
+    <div class="card-body">
+        <p class="mb-2">Análisis comparativo de rentabilidad por proveedor</p>
+        <button class="btn btn-secondary btn-full" id="generateSupplierComparisonReport">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Generar Comparativa de Proveedores
+        </button>
+    </div>
+</div>
+
+<!-- ========== ACTUALIZACIÓN DEL MODAL DE PRODUCTOS ========== -->
+<!-- REEMPLAZAR el formulario de productos existente con este que incluye los nuevos campos -->
+<!-- El formulario actual debe incluir estos campos adicionales: -->
+
+<!-- Agregar después del campo productName en el modal de productos -->
+<div class="form-group">
+    <label for="productPartNumber">Número de Pieza</label>
+    <input type="text" id="productPartNumber" class="form-input" placeholder="Ej: PRT-12345">
+</div>
+
+<div class="form-group">
+    <label for="productSupplier">Proveedor</label>
+    <select id="productSupplier" class="form-input">
+        <option value="">Sin proveedor</option>
+        <!-- Se llenará dinámicamente con JavaScript -->
+    </select>
+</div>
+
+<!-- Agregar antes del campo productPrice -->
+<div class="form-group">
+    <label for="productCost">Costo de Compra *</label>
+    <input type="number" id="productCost" class="form-input" step="0.01" min="0" required>
+    <small style="color: var(--gray-400);">Precio al que compras al proveedor</small>
+</div>
+
+<!-- Actualizar el label del campo precio -->
+<div class="form-group">
+    <label for="productPrice">Precio al Público *</label>
+    <input type="number" id="productPrice" class="form-input" step="0.01" min="0" required>
+    <small style="color: var(--gray-400);">Precio de venta al cliente</small>
+</div>
+
+<!-- Agregar después del campo productPrice para mostrar el cálculo de utilidad -->
+<div class="form-group">
+    <label>Utilidad Calculada</label>
+    <div id="profitCalculation"
+        style="padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: var(--radius-md); color: var(--success-500);">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>Utilidad por unidad:</span>
+            <strong id="unitProfit">$0.00</strong>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <span>Margen de utilidad:</span>
+            <strong id="profitMargin">0%</strong>
+        </div>
+    </div>
+</div>
+
+<!-- ========== SCRIPTS A AGREGAR ========== -->
+<!-- Agregar antes del cierre del body tag, después del script de app.js -->
+<script src="suppliers-module.js"></script>

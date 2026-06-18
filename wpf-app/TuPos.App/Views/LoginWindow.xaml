@@ -1,0 +1,115 @@
+<Window x:Class="TuPos.App.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Tu POS - Iniciar Sesión" 
+        Height="550" Width="850"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DarkWindowStyle}"
+        ResizeMode="NoResize"
+        Background="#0b0f19">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="380"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel: Branding & Slogan -->
+        <Border Grid.Column="0" Background="#16a34a">
+            <Grid Margin="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="🏪" FontSize="72" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                    <TextBlock Text="Tu POS" FontSize="42" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Sistema de Punto de Venta Nativo" FontSize="16" Foreground="#dcfce7" HorizontalAlignment="Center" Margin="0,10,0,0" TextAlignment="Center"/>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Text="Versión 3.0.0 (C# WPF)" FontSize="12" Foreground="#bbf7d0" HorizontalAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <!-- Right Panel: Login Form -->
+        <Grid Grid.Column="1" Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tab Switching Header -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,30">
+                <RadioButton x:Name="TabPasswordBtn" Content="Contraseña" Style="{StaticResource {x:Type ToggleButton}}" 
+                             IsChecked="True" Padding="20,10" Width="150" Height="40" Margin="0,0,10,0"
+                             Click="Tab_Click" Cursor="Hand"/>
+                <RadioButton x:Name="TabPinBtn" Content="PIN Rápido" Style="{StaticResource {x:Type ToggleButton}}" 
+                             Padding="20,10" Width="150" Height="40"
+                             Click="Tab_Click" Cursor="Hand"/>
+            </StackPanel>
+
+            <!-- Login forms container -->
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                
+                <!-- Password Login Form -->
+                <StackPanel x:Name="PasswordForm" Visibility="Visible">
+                    <TextBlock Text="Bienvenido de nuevo" FontSize="24" FontWeight="Bold" Margin="0,0,0,5"/>
+                    <TextBlock Text="Ingresa tus credenciales para acceder" FontSize="14" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,30"/>
+
+                    <TextBlock Text="Usuario" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,8"/>
+                    <TextBox x:Name="TxtUsername" Margin="0,0,0,20" PlaceholderText="Ej. admin"/>
+
+                    <TextBlock Text="Contraseña" FontSize="13" FontWeight="SemiBold" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,8"/>
+                    <PasswordBox x:Name="TxtPassword" Margin="0,0,0,30" PasswordChanged="TxtPassword_PasswordChanged"/>
+
+                    <Button Content="Iniciar Sesión" Style="{StaticResource AccentButton}" Height="45" Click="BtnLogin_Click"/>
+                </StackPanel>
+
+                <!-- PIN Login Form -->
+                <Grid x:Name="PinForm" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="220"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Margin="0,0,20,0">
+                        <TextBlock Text="Ingreso por PIN" FontSize="24" FontWeight="Bold" Margin="0,0,0,5"/>
+                        <TextBlock Text="Ingresa tu código de cajero" FontSize="13" Foreground="{StaticResource BrushTextSec}" Margin="0,0,0,20" TextWrapping="Wrap"/>
+                        
+                        <!-- Dots indicating PIN length -->
+                        <PasswordBox x:Name="TxtPin" FontSize="36" Height="60" MaxLength="4" 
+                                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                     Background="#0f172a" BorderBrush="{StaticResource BrushBorder}" BorderThickness="1"
+                                     Foreground="{StaticResource BrushTextMain}" IsEnabled="False" PasswordChanged="TxtPin_PasswordChanged"/>
+                    </StackPanel>
+
+                    <!-- Embedded Numeric PIN pad -->
+                    <UniformGrid Grid.Column="1" Columns="3" Rows="4" Height="240" VerticalAlignment="Center">
+                        <Button Content="1" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="2" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="3" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="4" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="5" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="6" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="7" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="8" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="9" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="C" Margin="3" FontSize="18" Style="{StaticResource DangerButton}" Click="PinPadClear_Click"/>
+                        <Button Content="0" Margin="3" FontSize="18" Click="PinPad_Click"/>
+                        <Button Content="←" Margin="3" FontSize="18" Click="PinPadBackspace_Click"/>
+                    </UniformGrid>
+                </Grid>
+                
+            </Grid>
+
+            <!-- Footer & Error Message -->
+            <TextBlock Grid.Row="2" x:Name="TxtError" Text="" Foreground="{StaticResource BrushDanger}" 
+                       FontSize="13" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,15,0,0" TextAlignment="Center"/>
+        </Grid>
+    </Grid>
+</Window>

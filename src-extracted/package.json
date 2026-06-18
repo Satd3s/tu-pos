@@ -1,0 +1,40 @@
+{
+  "name": "sistema-inventario-refaccionaria",
+  "version": "1.0.1",
+  "description": "Sistema completo de gestión de inventario para refaccionarias",
+  "main": "main.js",
+  "author": "Refaccionaria Smip",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.9.0"
+  },
+  "build": {
+    "appId": "com.refaccionaria.inventario",
+    "productName": "Sistema de Inventario",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sistema de Inventario"
+    }
+  }
+}
